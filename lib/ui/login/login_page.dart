@@ -1,3 +1,4 @@
+import 'package:akgec_erp/utils/box.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -85,19 +86,25 @@ class _LoginPageState extends State<LoginPage> {
         username: _userController.text.trim(),
         password: _passController.text.trim(),
       );
-      Navigator.pop(context);
-
       tokenResponse.fold(
-        (model) {
+        (model) async {
+          final isAccountSet = await BoxUtils.setAccount(tokenModel: model);
+          if (isAccountSet) {
+            Navigator.of(context)
+              ..pop()
+              ..pop();
+            Navigator.push(
+              context,
+              CupertinoPageRoute(builder: (_) => HomePage()),
+            );
+          }
+        },
+        (err) {
           Navigator.pop(context);
-          Navigator.push(
-            context,
-            CupertinoPageRoute(builder: (_) => HomePage()),
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(content: Text(err.message!)),
           );
         },
-        (err) => ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(err.message!)),
-        ),
       );
     }
   }
