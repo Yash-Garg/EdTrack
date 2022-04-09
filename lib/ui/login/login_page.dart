@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../api/login_api.dart';
-import '../../constants.dart';
 import '../../injectable.dart';
+import '../../utils/constants.dart';
 import '../common/loading_dialog.dart';
 import '../home/home_page.dart';
 
