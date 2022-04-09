@@ -13,7 +13,7 @@ class BoxUtils {
 
   static Future<bool> checkLogin() async {
     final box = await Hive.openBox<CredentialObject>(BoxConstants.credentials);
-    if (!box.values.first.accessToken.isNullOrEmpty) {
+    if (!box.get('creds_key')!.accessToken.isNullOrEmpty) {
       return true;
     } else {
       return false;
@@ -32,7 +32,7 @@ class BoxUtils {
       ..tokenType = tokenModel.tokenType
       ..rx = tokenModel.rx;
 
-    box.putAt(0, creds);
+    box.put('creds_key', creds);
     return true;
   }
 
@@ -42,7 +42,7 @@ class BoxUtils {
       return null;
     }
 
-    CredentialObject creds = box.getAt(0)!;
+    CredentialObject creds = box.get('creds_key')!;
     return creds;
   }
 }

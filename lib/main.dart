@@ -6,7 +6,7 @@ import 'utils/box.dart';
 
 Future<void> main() async {
   await initializeApp();
-  runApp(const AttendanceApp());
+  runApp(AttendanceApp());
 }
 
 Future<void> initializeApp() async {
