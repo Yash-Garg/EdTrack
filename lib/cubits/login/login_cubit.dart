@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
 part 'login_state.dart';
-part '../../../generated/src/cubits/login/login_cubit.freezed.dart';
+part '../../generated/cubits/login/login_cubit.freezed.dart';
 
 @lazySingleton
 class LoginCubit extends Cubit<LoginState> {

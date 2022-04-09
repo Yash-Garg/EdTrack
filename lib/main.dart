@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import 'src/app.dart';
-import 'src/constants.dart';
-import 'src/injectable.dart';
+import 'app.dart';
+import 'constants.dart';
+import 'injectable.dart';
 
 Future<void> main() async {
   await initializeApp();
