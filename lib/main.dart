@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 
 import 'app.dart';
-import 'constants.dart';
 import 'injectable.dart';
+import 'utils/box.dart';
 
 Future<void> main() async {
   await initializeApp();
@@ -12,6 +11,6 @@ Future<void> main() async {
 
 Future<void> initializeApp() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Hive.initFlutter(Constants.APP_NAME);
+  await BoxUtils.initializeHive();
   configureDependencies();
 }
