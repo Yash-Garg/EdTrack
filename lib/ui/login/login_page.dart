@@ -1,7 +1,11 @@
-import 'package:akgec_erp/api/login_api.dart';
-import 'package:akgec_erp/constants.dart';
-import 'package:akgec_erp/injectable.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
+import '../../api/login_api.dart';
+import '../../constants.dart';
+import '../../injectable.dart';
+import '../common/loading_dialog.dart';
+import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -76,11 +80,24 @@ class _LoginPageState extends State<LoginPage> {
 
   _proceed() async {
     if (formKey.currentState?.validate() ?? false) {
-      debugPrint(_userController.text);
-      debugPrint(_passController.text);
-      await getIt<LoginApi>().getAccessToken(
+      showLoadingDialog(context);
+      final tokenResponse = await getIt<LoginApi>().getAccessToken(
         username: _userController.text.trim(),
         password: _passController.text.trim(),
+      );
+      Navigator.pop(context);
+
+      tokenResponse.fold(
+        (model) {
+          Navigator.pop(context);
+          Navigator.push(
+            context,
+            CupertinoPageRoute(builder: (_) => HomePage()),
+          );
+        },
+        (err) => ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text(err.message!)),
+        ),
       );
     }
   }
