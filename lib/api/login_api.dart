@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -28,14 +30,17 @@ class LoginApi {
           'password': password,
           'remember': true.toString(),
         },
-        options: Options(contentType: Headers.formUrlEncodedContentType),
+        options: Options(
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        ),
       );
 
       final tokenData = TokenModel.fromJson(response.data);
 
       debugPrint('ACCESS TOKEN - ${tokenData.accessToken}');
       return left(tokenData);
-    } catch (e) {
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to login'));
     }
   }
