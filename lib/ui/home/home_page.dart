@@ -4,7 +4,7 @@ import 'package:lottie/lottie.dart';
 
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
-import '../../theme_data.dart';
+import '../../utils/constants.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
 
@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
             if (state.loading) {
               return Center(
                 child: LottieBuilder.asset(
-                  'assets/loading.json',
+                  Constants.loadingAnim,
                   frameRate: FrameRate.max,
                   width: MediaQuery.of(context).size.width / 1.5,
                 ),
@@ -51,16 +51,15 @@ class _HomePageState extends State<HomePage> {
                 ],
               );
             }
-            return Center(child: Text('Error fetching data...'));
+            return Center(
+              child: LottieBuilder.asset(
+                Constants.errorAnim,
+                frameRate: FrameRate.max,
+              ),
+            );
           },
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   icon: Icon(Icons.ios_share_outlined),
-      //   onPressed: () {},
-      //   label: Text('Share'),
-      //   backgroundColor: AppTheme.accentBlue,
-      // ),
     );
   }
 }

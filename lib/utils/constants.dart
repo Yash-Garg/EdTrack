@@ -1,6 +1,9 @@
 class Constants {
   static String APP_NAME = 'AKGEC ERP';
   static String HIVE_DB = 'AkgecErpHive';
+
+  static String loadingAnim = 'assets/loading.json';
+  static String errorAnim = 'assets/error.json';
 }
 
 class BoxConstants {
