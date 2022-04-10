@@ -3,7 +3,9 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
+import '../common/custom_textfield.dart';
 import '../common/loading_dialog.dart';
+import '../common/wide_fab.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -44,24 +46,22 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   SvgPicture.asset(
                     'assets/login.svg',
                     height: 300,
                   ),
                   Text(
-                    'Login',
+                    'Tell us more about yourself by signing in!',
                     style: TextStyle(
                       fontSize: 30,
                       fontWeight: FontWeight.bold,
                     ),
                   ),
                   SizedBox(height: 30),
-                  TextFormField(
+                  CustomTextField(
                     controller: _userController,
-                    maxLines: null,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) => val != null && val.isNotEmpty
                         ? null
                         : 'Invalid username',
@@ -72,13 +72,12 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: 20),
-                  TextFormField(
+                  CustomTextField(
                     controller: _passController,
-                    obscureText: _obscureText,
-                    autovalidateMode: AutovalidateMode.onUserInteraction,
                     validator: (val) => val != null && val.isNotEmpty
                         ? null
                         : 'Invalid password',
+                    obscure: _obscureText,
                     decoration: InputDecoration(
                       labelText: 'Password',
                       border: OutlineInputBorder(),
@@ -86,10 +85,21 @@ class _LoginPageState extends State<LoginPage> {
                       suffixIcon: IconButton(
                         icon: Icon(
                           _obscureText
-                              ? Icons.visibility_outlined
-                              : Icons.visibility_off_outlined,
+                              ? Icons.visibility_off_outlined
+                              : Icons.visibility_outlined,
                         ),
                         onPressed: () => _toggle(),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  InkWell(
+                    onTap: () {},
+                    child: Text(
+                      'Forgot password?',
+                      style: TextStyle(
+                        fontSize: 15,
+                        color: Colors.black.withOpacity(0.6),
                       ),
                     ),
                   ),
@@ -99,13 +109,11 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   backgroundColor: AppTheme.accentBlue,
-      //   onPressed: _proceed,
-      //   icon: Icon(Icons.login),
-      //   enableFeedback: true,
-      //   label: Text('LOGIN'),
-      // ),
+      floatingActionButton: WideFab(
+        label: 'LOGIN',
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
   }
 
