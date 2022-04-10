@@ -57,7 +57,7 @@ class LoginApi {
               'Dear ####, Please find your new password; Username- #### , New Password- #### \n ####',
           'sMSMobileNumber': mobileNumber,
           'status': false.toString(),
-          'templateId': 1,
+          'templateId': 1.toString(),
         },
         options: Options(
           headers: {'Content-Type': 'application/x-www-form-urlencoded'},

@@ -21,4 +21,7 @@ class CredentialObject extends HiveObject {
 
   @HiveField(5)
   String? expires;
+
+  @HiveField(6)
+  String? contextId;
 }

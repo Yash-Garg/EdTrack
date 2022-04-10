@@ -4,6 +4,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../api/data_api.dart';
 import '../../injectable.dart';
+import '../../models/user/user_attendance.dart';
 import '../../models/user/user_model.dart';
 import '../config/config_cubit.dart';
 
@@ -15,21 +16,37 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeState.initial());
 
-  started() {
-    _getDetails();
+  final _creds = getIt<ConfigCubit>().state.credentials!;
+
+  started() async {
+    await _getDetails();
+    await _getAttendance();
+    emit(state.copyWith(loading: false));
   }
 
   _getDetails() async {
-    final creds = getIt<ConfigCubit>().state.credentials!;
-
     final userResponse = await getIt<DataApi>().getUserDetails(
-      userId: creds.userId.toString(),
-      authToken: creds.accessToken!,
+      userId: _creds.userId.toString(),
+      authToken: _creds.accessToken!,
     );
 
     userResponse.fold(
-      (user) => emit(state.copyWith(user: user, loading: false)),
-      (err) => emit(state.copyWith(loading: false)),
+      (user) => emit(state.copyWith(user: user)),
+      (err) => emit(state.copyWith(hasError: true, loading: false)),
+    );
+  }
+
+  _getAttendance() async {
+    final attResponse = await getIt<DataApi>().getUserAttendance(
+      userId: _creds.userId.toString(),
+      authToken: _creds.accessToken!,
+      rx: _creds.rx.toString(),
+      contextId: _creds.contextId!,
+    );
+
+    attResponse.fold(
+      (attendance) => emit(state.copyWith(attendance: attendance)),
+      (err) => emit(state.copyWith(hasError: true, loading: false)),
     );
   }
 

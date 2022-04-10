@@ -29,7 +29,8 @@ class BoxUtils {
       ..issued = tokenModel.issued
       ..userId = int.parse(tokenModel.userId)
       ..tokenType = tokenModel.tokenType
-      ..rx = tokenModel.rx;
+      ..rx = tokenModel.rx
+      ..contextId = tokenModel.contextId;
 
     box.put(BoxConstants.credentialsKey, creds);
     return true;

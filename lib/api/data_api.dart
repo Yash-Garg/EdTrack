@@ -1,10 +1,10 @@
-import 'package:akgec_erp/models/user/user_attendance.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/error/api_error.dart';
+import '../models/user/user_attendance.dart';
 import '../models/user/user_model.dart';
 import 'endpoints.dart';
 
@@ -40,13 +40,20 @@ class DataApi {
   Future<Either<Attendance, ApiError>> getUserAttendance({
     required String userId,
     required String authToken,
+    required String rx,
+    required String contextId,
   }) async {
     try {
       final response = await dio.get(
-        '${Endpoints.attendanceDetails}/?isDateWise=false&termId=0&userId=$userId&y=0',
+        '${Endpoints.attendanceDetails}?isDateWise=false&termId=0&userId=$userId&y=0',
         options: Options(
           responseType: ResponseType.json,
-          headers: {'authorization': 'Bearer $authToken'},
+          headers: {
+            'authorization': 'Bearer $authToken',
+            'X-UserId': userId,
+            'X-RX': rx,
+            'X-ContextId': contextId,
+          },
         ),
       );
 
