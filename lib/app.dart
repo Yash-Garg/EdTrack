@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'cubits/config/config_cubit.dart';
 import 'cubits/home/home_cubit.dart';
 import 'injectable.dart';
+import 'theme_data.dart';
 import 'ui/splash/splash_screen.dart';
 import 'utils/box.dart';
 import 'utils/constants.dart';
@@ -31,6 +32,7 @@ class AttendanceApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: Constants.APP_NAME,
         home: SplashScreen(),
+        theme: AppTheme.themeData,
       ),
     );
   }

@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
-import '../../theme_data.dart';
 import '../common/loading_dialog.dart';
 
 class LoginPage extends StatefulWidget {
@@ -38,12 +37,12 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Form(
-            key: formKey,
-            child: SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
+        child: Form(
+          key: formKey,
+          child: SingleChildScrollView(
+            physics: BouncingScrollPhysics(),
+            child: Padding(
+              padding: const EdgeInsets.all(20.0),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -100,13 +99,13 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        backgroundColor: AppTheme.accentBlue,
-        onPressed: _proceed,
-        icon: Icon(Icons.login),
-        enableFeedback: true,
-        label: Text('LOGIN'),
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   backgroundColor: AppTheme.accentBlue,
+      //   onPressed: _proceed,
+      //   icon: Icon(Icons.login),
+      //   enableFeedback: true,
+      //   label: Text('LOGIN'),
+      // ),
     );
   }
 

@@ -45,7 +45,8 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
               ..issued = model.issued
               ..userId = int.parse(model.userId)
               ..tokenType = model.tokenType
-              ..rx = model.rx,
+              ..rx = model.rx
+              ..contextId = model.contextId,
           ));
 
           Navigator.pop(context);

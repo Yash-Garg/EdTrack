@@ -23,22 +23,30 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: BlocBuilder<HomeCubit, HomeState>(
-        bloc: _homeCubit,
-        builder: (context, state) {
-          if (state.loading) {
-            return Center(child: CircularProgressIndicator());
-          }
-          if (state.user != null) {
-            return Center(
-              child: Text(
-                '${state.user!.firstName} ${state.user!.lastName} - ${state.user!.userId}',
-                style: TextStyle(fontSize: 18),
-              ),
-            );
-          }
-          return Center(child: Text('ERROR FETCHING DATA'));
-        },
+      body: SafeArea(
+        child: BlocBuilder<HomeCubit, HomeState>(
+          bloc: _homeCubit,
+          builder: (context, state) {
+            if (state.loading) {
+              return Center(child: CircularProgressIndicator());
+            }
+            if (state.user != null) {
+              return Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Column(
+                  children: [
+                    Row(
+                      children: [
+                        Text('Welcome ${state.user!.firstName}'),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }
+            return Center(child: Text('ERROR FETCHING DATA'));
+          },
+        ),
       ),
     );
   }
