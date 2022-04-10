@@ -22,6 +22,7 @@ dependencies:
   hydrated_bloc: ^8.1.0
   injectable: ^1.5.0
   json_annotation: ^4.4.0
+  lottie: ^1.2.2
   path_provider: ^2.0.9
 
 dev_dependencies:
@@ -36,3 +37,5 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/
