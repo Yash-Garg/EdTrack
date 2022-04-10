@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/config/config_cubit.dart';
@@ -13,6 +14,8 @@ class AttendanceApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
+
     return BlocListener<ConfigCubit, ConfigState>(
       bloc: getIt<ConfigCubit>()..started(),
       listener: (context, state) async {
