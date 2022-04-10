@@ -39,7 +39,9 @@ class LoginApi {
       return left(tokenData);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
-      return right(ApiError(message: 'Failed to login'));
+      return right(ApiError(
+        message: 'Failed! Please check your credentials again.',
+      ));
     }
   }
 

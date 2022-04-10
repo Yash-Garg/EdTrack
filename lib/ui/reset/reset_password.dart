@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../../api/login_api.dart';
+import '../../injectable.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
 
@@ -89,21 +91,18 @@ class _ResetPasswordState extends State<ResetPassword> {
             setState(() {
               _isLoading = true;
             });
-            // final response = await getIt<LoginApi>().resetPassword(
-            //   admissionNumber: _admissionController.text.trim(),
-            //   mobileNumber: _mobileController.text.trim(),
-            // );
 
-            // Navigator.of(context)
-            //   ..pop()
-            //   ..pop();
+            final response = await getIt<LoginApi>().resetPassword(
+              admissionNumber: _admissionController.text.trim(),
+              mobileNumber: _mobileController.text.trim(),
+            );
 
-            // response.fold(
-            //   (sent) {
-            //     if (sent) {}
-            //   },
-            //   (r) => null,
-            // );
+            response.fold(
+              (sent) {
+                if (sent) {}
+              },
+              (r) => null,
+            );
           }
         },
       ),

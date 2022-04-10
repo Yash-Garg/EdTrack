@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
@@ -7,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../api/login_api.dart';
 import '../../injectable.dart';
 import '../../models/credential/credential_object.dart';
+import '../../ui/common/custom_snackbar.dart';
 import '../../ui/home/home_page.dart';
 import '../../utils/box.dart';
 
@@ -56,9 +56,7 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
         }
       },
       (err) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text(err.message!)),
-        );
+        showCustomSnack(context: context, message: err.message);
       },
     );
   }

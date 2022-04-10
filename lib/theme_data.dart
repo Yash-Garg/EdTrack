@@ -6,6 +6,7 @@ class AppTheme {
 
   static const Color accentBlue = Color.fromARGB(255, 0, 85, 255);
   static Color mildBlack = Colors.black.withOpacity(.6);
+  static String? fontFamily = GoogleFonts.poppins().fontFamily;
 
   static ThemeData themeData = ThemeData(
     primaryColor: accentBlue,
@@ -15,7 +16,7 @@ class AppTheme {
       iconTheme: IconThemeData(color: Colors.black),
       elevation: 0,
     ),
-    fontFamily: GoogleFonts.poppins().fontFamily,
+    fontFamily: fontFamily,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: mildBlack,
