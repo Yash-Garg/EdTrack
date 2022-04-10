@@ -40,10 +40,11 @@ class _LoginPageState extends State<LoginPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Form(
-          key: formKey,
-          child: SingleChildScrollView(
-            physics: BouncingScrollPhysics(),
+        child: SingleChildScrollView(
+          reverse: true,
+          physics: BouncingScrollPhysics(),
+          child: Form(
+            key: formKey,
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
@@ -93,7 +94,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 10),
+                  // SizedBox(height: 10),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
@@ -112,6 +113,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ],
                   ),
+                  SizedBox(height: MediaQuery.of(context).size.height / 16),
                 ],
               ),
             ),
@@ -119,7 +121,7 @@ class _LoginPageState extends State<LoginPage> {
         ),
       ),
       floatingActionButton: WideFab(
-        label: 'LOGIN',
+        label: 'Login',
         onPressed: _proceed,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

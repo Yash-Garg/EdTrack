@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../theme_data.dart';
+
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool obscure;
@@ -19,9 +21,9 @@ class CustomTextField extends StatelessWidget {
     return TextFormField(
       style: TextStyle(fontSize: 16, letterSpacing: 1),
       controller: controller,
+      cursorColor: AppTheme.mildBlack,
       maxLines: 1,
       obscureText: obscure,
-      keyboardType: TextInputType.number,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (val) => validator(val),
       decoration: decoration,
