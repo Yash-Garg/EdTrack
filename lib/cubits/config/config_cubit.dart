@@ -11,6 +11,7 @@ import '../../ui/home/home_page.dart';
 import '../../utils/box.dart';
 
 part '../../generated/cubits/config/config_cubit.freezed.dart';
+part '../../generated/cubits/config/config_cubit.g.dart';
 part 'config_state.dart';
 
 @lazySingleton

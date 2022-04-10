@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/config/config_cubit.dart';
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
 
@@ -27,7 +28,11 @@ class _HomePageState extends State<HomePage> {
       body: BlocBuilder<HomeCubit, HomeState>(
         bloc: _homeCubit,
         builder: (context, state) {
-          return Center(child: Text('Logged in'));
+          return Center(
+            child: Text(
+              'USER ID - ${getIt<ConfigCubit>().state.credentials!.userId}',
+            ),
+          );
         },
       ),
     );

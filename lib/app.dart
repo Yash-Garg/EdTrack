@@ -27,7 +27,6 @@ class AttendanceApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: Constants.APP_NAME,
-        // TODO: Save ConfigCubit state using HydratedBloc
         home: SplashScreen(),
       ),
     );
