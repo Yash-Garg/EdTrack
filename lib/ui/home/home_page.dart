@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/config/config_cubit.dart';
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
 
@@ -24,15 +23,21 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
       body: BlocBuilder<HomeCubit, HomeState>(
         bloc: _homeCubit,
         builder: (context, state) {
-          return Center(
-            child: Text(
-              'USER ID - ${getIt<ConfigCubit>().state.credentials!.userId}',
-            ),
-          );
+          if (state.loading) {
+            return Center(child: CircularProgressIndicator());
+          }
+          if (state.user != null) {
+            return Center(
+              child: Text(
+                '${state.user!.firstName} ${state.user!.lastName} - ${state.user!.userId}',
+                style: TextStyle(fontSize: 18),
+              ),
+            );
+          }
+          return Center(child: Text('ERROR FETCHING DATA'));
         },
       ),
     );
