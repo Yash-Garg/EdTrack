@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
+import '../../theme_data.dart';
 import '../common/custom_textfield.dart';
 import '../common/loading_dialog.dart';
 import '../common/wide_fab.dart';
@@ -46,7 +47,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Padding(
               padding: const EdgeInsets.all(20.0),
               child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SvgPicture.asset(
                     'assets/login.svg',
@@ -80,7 +81,7 @@ class _LoginPageState extends State<LoginPage> {
                     obscure: _obscureText,
                     decoration: InputDecoration(
                       labelText: 'Password',
-                      border: OutlineInputBorder(),
+                      border: const OutlineInputBorder(),
                       prefixIcon: Icon(Icons.lock_outline),
                       suffixIcon: IconButton(
                         icon: Icon(
@@ -93,15 +94,23 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   SizedBox(height: 10),
-                  InkWell(
-                    onTap: () {},
-                    child: Text(
-                      'Forgot password?',
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Colors.black.withOpacity(0.6),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      InkWell(
+                        onTap: () {},
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8.0),
+                          child: Text(
+                            'Forgot password?',
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: AppTheme.mildBlack,
+                            ),
+                          ),
+                        ),
                       ),
-                    ),
+                    ],
                   ),
                 ],
               ),
@@ -111,7 +120,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButton: WideFab(
         label: 'LOGIN',
-        onPressed: () {},
+        onPressed: _proceed,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
