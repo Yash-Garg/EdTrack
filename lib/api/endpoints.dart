@@ -1,9 +1,11 @@
 class Endpoints {
-  static String token = 'https://akgecerp.edumarshal.com/Token';
-  static String userDetails =
-      'https://akgecerp.edumarshal.com/api/User/GetByUserId';
-  static String orgDetails =
-      'https://akgecerp.edumarshal.com/api/Organization/GetByOrganizationId';
+  static String baseURL = 'https://akgecerp.edumarshal.com';
+
+  static String token = '$baseURL/Token';
+  static String securityToken = '$baseURL/api/SecurityToken';
+  static String userDetails = '$baseURL/api/User/GetByUserId';
+  static String orgDetails = '$baseURL/api/Organization/GetByOrganizationId';
   static String attendanceDetails =
-      'https://akgecerp.edumarshal.com/api/SubjectAttendance/GetPresentAbsentStudent';
+      '$baseURL/api/SubjectAttendance/GetPresentAbsentStudent';
+  static String forgotPassword = '$baseURL/api/ForgotPassword';
 }

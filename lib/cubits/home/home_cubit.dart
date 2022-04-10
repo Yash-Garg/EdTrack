@@ -20,12 +20,11 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   _getDetails() async {
-    final userId = getIt<ConfigCubit>().state.credentials!.userId;
-    final accessToken = getIt<ConfigCubit>().state.credentials!.accessToken!;
+    final creds = getIt<ConfigCubit>().state.credentials!;
 
     final userResponse = await getIt<DataApi>().getUserDetails(
-      userId: userId.toString(),
-      authToken: accessToken,
+      userId: creds.userId.toString(),
+      authToken: creds.accessToken!,
     );
 
     userResponse.fold(
