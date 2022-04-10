@@ -8,4 +8,5 @@ class Endpoints {
   static String attendanceDetails =
       '$baseURL/api/SubjectAttendance/GetPresentAbsentStudent';
   static String forgotPassword = '$baseURL/api/ForgotPassword';
+  static String fileBlob = '$baseURL/api/fileblob';
 }

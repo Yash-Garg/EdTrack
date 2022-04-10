@@ -1,3 +1,5 @@
+import 'package:akgec_erp/api/endpoints.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -20,10 +22,24 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
+  var items = <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+      icon: Icon(Icons.home),
+      label: 'Home',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.calendar_month_outlined),
+      label: 'Attendance',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.person_rounded),
+      label: 'Profile',
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Home')),
       body: SafeArea(
         child: BlocBuilder<HomeCubit, HomeState>(
           bloc: _homeCubit,
@@ -32,12 +48,36 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             }
             if (state.user != null) {
-              return Text('Welcome ${state.user!.firstName}');
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      'Welcome, ${state.user!.firstName}!',
+                      style: TextStyle(
+                        fontSize: 25,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    ClipOval(
+                      child: CachedNetworkImage(
+                        imageUrl:
+                            '${Endpoints.fileBlob}/${state.user!.profilePictureId}',
+                        fit: BoxFit.cover,
+                        width: 50,
+                        height: 50,
+                      ),
+                    )
+                  ],
+                ),
+              );
             }
-            return Center(child: Text('ERROR FETCHING DATA'));
+            return Center(child: Text('Error fetching data...'));
           },
         ),
       ),
+      // bottomNavigationBar: BottomNavigationBar(items: items),
     );
   }
 }
