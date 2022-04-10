@@ -42,4 +42,38 @@ class LoginApi {
       return right(ApiError(message: 'Failed to login'));
     }
   }
+
+  Future<Either<bool, ApiError>> resetPassword({
+    required String admissionNumber,
+    required String mobileNumber,
+  }) async {
+    try {
+      final response = await dio.post(
+        Endpoints.forgotPassword,
+        data: {
+          'admissionNumber': admissionNumber,
+          'email': '',
+          'message':
+              'Dear ####, Please find your new password; Username- #### , New Password- #### \n ####',
+          'sMSMobileNumber': mobileNumber,
+          'status': false.toString(),
+          'templateId': 1,
+        },
+        options: Options(
+          headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+        ),
+      );
+
+      if (response.statusCode == 200) {
+        return left(true);
+      } else {
+        return left(false);
+      }
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
+      return right(ApiError(
+        message: 'Please enter valid admission number or phone number',
+      ));
+    }
+  }
 }
