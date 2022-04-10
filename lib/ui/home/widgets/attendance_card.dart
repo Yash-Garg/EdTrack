@@ -1,3 +1,4 @@
+import 'package:akgec_erp/ui/common/custom_shadow_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/user/user_attendance.dart';
@@ -12,13 +13,12 @@ class AttendanceCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      shape: AppTheme.cardShape,
+    return CustomShadowCard(
+      height: 170,
+      width: double.infinity,
       child: InkWell(
         onTap: () {},
         child: Container(
-          width: double.infinity,
-          height: 170,
           padding: const EdgeInsets.all(16.0),
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(AppTheme.cardRadius),

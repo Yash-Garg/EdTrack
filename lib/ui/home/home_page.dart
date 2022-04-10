@@ -1,15 +1,10 @@
-import '../../models/user/user_attendance.dart';
-import 'widgets/attendance_card.dart';
-import 'widgets/header.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../api/endpoints.dart';
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
-import '../../models/user/user_model.dart';
-import '../../theme_data.dart';
+import 'widgets/attendance_card.dart';
+import 'widgets/header.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Header(user: state.user!),
-                    SizedBox(height: 20),
+                    SizedBox(height: 10),
                     AttendanceCard(attendance: state.attendance!),
                   ],
                 ),
