@@ -1,3 +1,4 @@
+import 'package:akgec_erp/models/user/user_attendance.dart';
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -30,6 +31,31 @@ class DataApi {
 
       debugPrint('USER - ${user.firstName}');
       return left(user);
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
+      return right(ApiError(message: 'Failed to fetch details'));
+    }
+  }
+
+  Future<Either<Attendance, ApiError>> getUserAttendance({
+    required String userId,
+    required String authToken,
+  }) async {
+    try {
+      final response = await dio.get(
+        '${Endpoints.attendanceDetails}/?isDateWise=false&termId=0&userId=$userId&y=0',
+        options: Options(
+          responseType: ResponseType.json,
+          headers: {'authorization': 'Bearer $authToken'},
+        ),
+      );
+
+      final attendanceData = Attendance.fromJson(response.data);
+
+      debugPrint(
+        'ATTENDANCE - ${attendanceData.stdSubAtdDetails.overallPercentage}',
+      );
+      return left(attendanceData);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to fetch details'));
