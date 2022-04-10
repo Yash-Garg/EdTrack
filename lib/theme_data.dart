@@ -9,7 +9,12 @@ class AppTheme {
 
   static ThemeData themeData = ThemeData(
     primaryColor: accentBlue,
-    appBarTheme: AppBarTheme(centerTitle: true),
+    appBarTheme: AppBarTheme(
+      centerTitle: true,
+      backgroundColor: ThemeData().scaffoldBackgroundColor,
+      iconTheme: IconThemeData(color: Colors.black),
+      elevation: 0,
+    ),
     fontFamily: GoogleFonts.poppins().fontFamily,
     visualDensity: VisualDensity.adaptivePlatformDensity,
     inputDecorationTheme: InputDecorationTheme(

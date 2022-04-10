@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -7,6 +8,7 @@ import '../../theme_data.dart';
 import '../common/custom_textfield.dart';
 import '../common/loading_dialog.dart';
 import '../common/wide_fab.dart';
+import '../reset/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -99,7 +101,10 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: () {},
+                        onTap: () => Navigator.push(
+                          context,
+                          CupertinoPageRoute(builder: (_) => ResetPassword()),
+                        ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
