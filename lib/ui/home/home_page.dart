@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/config/config_cubit.dart';
+import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
 
 class HomePage extends StatefulWidget {
@@ -12,24 +12,22 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late ConfigCubit _configCubit;
+  late HomeCubit _homeCubit;
 
   @override
   void initState() {
-    _configCubit = getIt<ConfigCubit>();
+    _homeCubit = getIt<HomeCubit>()..started();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
-      body: BlocBuilder<ConfigCubit, ConfigState>(
-        bloc: _configCubit,
+      appBar: AppBar(title: Text('Home')),
+      body: BlocBuilder<HomeCubit, HomeState>(
+        bloc: _homeCubit,
         builder: (context, state) {
-          return Center(
-            child: Text(state.isLoggedIn ? 'Logged IN' : 'Error'),
-          );
+          return Center(child: Text('Logged in'));
         },
       ),
     );

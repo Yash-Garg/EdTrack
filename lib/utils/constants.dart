@@ -5,4 +5,5 @@ class Constants {
 
 class BoxConstants {
   static String credentials = 'creds_box';
+  static String credentialsKey = 'creds_key';
 }

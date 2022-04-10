@@ -1,3 +1,4 @@
+import 'package:akgec_erp/cubits/config/config_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -90,6 +91,7 @@ class _LoginPageState extends State<LoginPage> {
         (model) async {
           final isAccountSet = await BoxUtils.setAccount(tokenModel: model);
           if (isAccountSet) {
+            getIt<ConfigCubit>().state.copyWith(isLoggedIn: true);
             Navigator.of(context)
               ..pop()
               ..pop();

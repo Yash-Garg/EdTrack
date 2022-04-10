@@ -3,7 +3,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import '../models/credential/credential_object.dart';
 import '../models/token/token_model.dart';
 import 'constants.dart';
-import 'extensions.dart';
 
 class BoxUtils {
   static Future<void> initializeHive() async {
@@ -13,7 +12,7 @@ class BoxUtils {
 
   static Future<bool> checkLogin() async {
     final box = await Hive.openBox<CredentialObject>(BoxConstants.credentials);
-    if (!box.get('creds_key')!.accessToken.isNullOrEmpty) {
+    if (box.containsKey(BoxConstants.credentialsKey)) {
       return true;
     } else {
       return false;
@@ -32,7 +31,7 @@ class BoxUtils {
       ..tokenType = tokenModel.tokenType
       ..rx = tokenModel.rx;
 
-    box.put('creds_key', creds);
+    box.put(BoxConstants.credentialsKey, creds);
     return true;
   }
 
@@ -42,7 +41,7 @@ class BoxUtils {
       return null;
     }
 
-    CredentialObject creds = box.get('creds_key')!;
+    CredentialObject creds = box.get(BoxConstants.credentialsKey)!;
     return creds;
   }
 }
