@@ -1,8 +1,8 @@
-import 'package:akgec_erp/ui/common/custom_shadow_card.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/user/user_attendance.dart';
 import '../../../theme_data.dart';
+import '../../common/custom_shadow_card.dart';
 
 class AttendanceCard extends StatelessWidget {
   final Attendance attendance;
@@ -33,9 +33,22 @@ class AttendanceCard extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text(
-                'Your Attendance',
-                style: AppTheme.titleMedium,
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Your Attendance',
+                    style: AppTheme.titleMedium,
+                  ),
+                  Text(
+                    '${attendance.stdSubAtdDetails.subjects.length} Subjects (with Labs)',
+                    style: AppTheme.titleMedium.copyWith(
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      letterSpacing: 0,
+                    ),
+                  ),
+                ],
               ),
               Align(
                 alignment: Alignment.bottomRight,

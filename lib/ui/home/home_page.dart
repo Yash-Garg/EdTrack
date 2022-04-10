@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
+import '../../theme_data.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
 
@@ -38,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     Header(user: state.user!),
-                    SizedBox(height: 10),
+                    SizedBox(height: 20),
                     AttendanceCard(attendance: state.attendance!),
                   ],
                 ),
@@ -47,6 +48,12 @@ class _HomePageState extends State<HomePage> {
             return Center(child: Text('Error fetching data...'));
           },
         ),
+      ),
+      floatingActionButton: FloatingActionButton.extended(
+        icon: Icon(Icons.ios_share_outlined),
+        onPressed: () {},
+        label: Text('Share'),
+        backgroundColor: AppTheme.accentBlue,
       ),
     );
   }

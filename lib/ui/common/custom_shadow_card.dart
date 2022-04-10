@@ -25,7 +25,7 @@ class CustomShadowCard extends StatelessWidget {
             height: height - 15,
             width: width - 32,
             decoration: BoxDecoration(
-              color: Colors.grey.withOpacity(.3),
+              color: AppTheme.mildBlack.withOpacity(.1),
               borderRadius: BorderRadius.all(
                 Radius.circular(AppTheme.cardRadius),
               ),
