@@ -1,3 +1,4 @@
+import 'package:akgec_erp/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
@@ -5,6 +6,7 @@ import 'package:lottie/lottie.dart';
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
 import '../../utils/constants.dart';
+import '../common/custom_card_tile.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
 
@@ -41,6 +43,8 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (state.user != null) {
+              final attendanceDetails = state.attendance!.stdSubAtdDetails;
+
               return ListView(
                 physics: BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(20.0),
@@ -48,6 +52,42 @@ class _HomePageState extends State<HomePage> {
                   Header(user: state.user!),
                   SizedBox(height: 20),
                   AttendanceCard(attendance: state.attendance!),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5.0, bottom: 5.0),
+                    child: Text(
+                      'Your Statistics',
+                      style: AppTheme.titleMedium.copyWith(
+                        color: Colors.black,
+                        fontSize: 22,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 190,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      physics: BouncingScrollPhysics(),
+                      children: [
+                        CustomCardTile(
+                          title: 'Overall Present',
+                          subtitle:
+                              '${attendanceDetails.overallPresent.toInt()} Lectures',
+                          icon: Icons.done_all,
+                          bgColor: Color.fromARGB(255, 167, 248, 209),
+                          iconColor: Colors.green,
+                        ),
+                        SizedBox(width: 10),
+                        CustomCardTile(
+                          title: 'Total Lectures',
+                          subtitle:
+                              '${attendanceDetails.overallLecture.toInt()} Lectures',
+                          icon: Icons.date_range,
+                          bgColor: Color.fromARGB(255, 209, 195, 255),
+                          iconColor: Colors.purple,
+                        ),
+                      ],
+                    ),
+                  )
                 ],
               );
             }
