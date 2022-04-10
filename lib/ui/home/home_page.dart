@@ -1,10 +1,15 @@
-import 'package:akgec_erp/api/endpoints.dart';
+import '../../models/user/user_attendance.dart';
+import 'widgets/attendance_card.dart';
+import 'widgets/header.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../api/endpoints.dart';
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
+import '../../models/user/user_model.dart';
+import '../../theme_data.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -22,21 +27,6 @@ class _HomePageState extends State<HomePage> {
     super.initState();
   }
 
-  var items = <BottomNavigationBarItem>[
-    BottomNavigationBarItem(
-      icon: Icon(Icons.home),
-      label: 'Home',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.calendar_month_outlined),
-      label: 'Attendance',
-    ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.person_rounded),
-      label: 'Profile',
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,25 +40,11 @@ class _HomePageState extends State<HomePage> {
             if (state.user != null) {
               return Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: Column(
                   children: [
-                    Text(
-                      'Welcome, ${state.user!.firstName}!',
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    ClipOval(
-                      child: CachedNetworkImage(
-                        imageUrl:
-                            '${Endpoints.fileBlob}/${state.user!.profilePictureId}',
-                        fit: BoxFit.cover,
-                        width: 50,
-                        height: 50,
-                      ),
-                    )
+                    Header(user: state.user!),
+                    SizedBox(height: 20),
+                    AttendanceCard(attendance: state.attendance!),
                   ],
                 ),
               );
@@ -77,7 +53,6 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      // bottomNavigationBar: BottomNavigationBar(items: items),
     );
   }
 }

@@ -20,7 +20,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   started() async {
     await _getDetails();
-    // await _getAttendance();
+    await _getAttendance();
     emit(state.copyWith(loading: false));
   }
 

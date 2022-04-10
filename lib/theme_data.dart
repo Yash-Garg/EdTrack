@@ -7,6 +7,14 @@ class AppTheme {
   static const Color accentBlue = Color.fromARGB(255, 0, 85, 255);
   static Color mildBlack = Colors.black.withOpacity(.6);
   static String? fontFamily = GoogleFonts.poppins().fontFamily;
+  static const double cardRadius = 16;
+
+  static const TextStyle titleMedium = TextStyle(
+    fontSize: 20,
+    fontWeight: FontWeight.bold,
+    color: Colors.white,
+    letterSpacing: 1,
+  );
 
   static ThemeData themeData = ThemeData(
     primaryColor: accentBlue,
@@ -27,5 +35,9 @@ class AppTheme {
         borderSide: const BorderSide(color: accentBlue, width: 2.0),
       ),
     ),
+  );
+
+  static const cardShape = RoundedRectangleBorder(
+    borderRadius: BorderRadius.all(Radius.circular(cardRadius)),
   );
 }
