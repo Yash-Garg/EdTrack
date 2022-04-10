@@ -74,7 +74,7 @@ class LoginApi {
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(
-        message: 'Please enter valid admission number or phone number',
+        message: 'Failed! Please enter valid admission number or phone number.',
       ));
     }
   }

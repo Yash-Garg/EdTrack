@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../api/login_api.dart';
 import '../../injectable.dart';
+import '../common/custom_snackbar.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
 
@@ -18,6 +19,13 @@ class _ResetPasswordState extends State<ResetPassword> {
   final _admissionController = TextEditingController();
   final _mobileController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void dispose() {
+    _admissionController.dispose();
+    _mobileController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -85,28 +93,42 @@ class _ResetPasswordState extends State<ResetPassword> {
       floatingActionButton: WideFab(
         label: 'Reset',
         isLoading: _isLoading,
-        onPressed: () async {
-          if (formKey.currentState?.validate() ?? false) {
-            FocusManager.instance.primaryFocus?.unfocus();
-            setState(() {
-              _isLoading = true;
-            });
-
-            final response = await getIt<LoginApi>().resetPassword(
-              admissionNumber: _admissionController.text.trim(),
-              mobileNumber: _mobileController.text.trim(),
-            );
-
-            response.fold(
-              (sent) {
-                if (sent) {}
-              },
-              (r) => null,
-            );
-          }
-        },
+        onPressed: _reset,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
     );
+  }
+
+  _reset() async {
+    if (formKey.currentState?.validate() ?? false) {
+      FocusManager.instance.primaryFocus?.unfocus();
+      setState(() {
+        _isLoading = true;
+      });
+
+      final response = await getIt<LoginApi>().resetPassword(
+        admissionNumber: _admissionController.text.trim(),
+        mobileNumber: _mobileController.text.trim(),
+      );
+
+      await Future.delayed(Duration(seconds: 5));
+      response.fold(
+        (sent) {
+          if (sent) {
+            Navigator.pop(context);
+            showCustomSnack(
+              context: context,
+              message: 'Reset SMS has been sent successfully.',
+              bgColor: Colors.green,
+            );
+          }
+        },
+        (err) => showCustomSnack(context: context, message: err.message),
+      );
+
+      setState(() {
+        _isLoading = false;
+      });
+    }
   }
 }
