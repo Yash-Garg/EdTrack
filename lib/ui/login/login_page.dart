@@ -1,13 +1,9 @@
-import 'package:akgec_erp/cubits/config/config_cubit.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../api/login_api.dart';
+import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
-import '../../utils/box.dart';
 import '../../utils/constants.dart';
 import '../common/loading_dialog.dart';
-import '../home/home_page.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -83,30 +79,10 @@ class _LoginPageState extends State<LoginPage> {
   _proceed() async {
     if (formKey.currentState?.validate() ?? false) {
       showLoadingDialog(context);
-      final tokenResponse = await getIt<LoginApi>().getAccessToken(
+      getIt<ConfigCubit>().setCredentials(
+        context: context,
         username: _userController.text.trim(),
         password: _passController.text.trim(),
-      );
-      tokenResponse.fold(
-        (model) async {
-          final isAccountSet = await BoxUtils.setAccount(tokenModel: model);
-          if (isAccountSet) {
-            getIt<ConfigCubit>().state.copyWith(isLoggedIn: true);
-            Navigator.of(context)
-              ..pop()
-              ..pop();
-            Navigator.push(
-              context,
-              CupertinoPageRoute(builder: (_) => HomePage()),
-            );
-          }
-        },
-        (err) {
-          Navigator.pop(context);
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(content: Text(err.message!)),
-          );
-        },
       );
     }
   }
