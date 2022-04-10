@@ -41,7 +41,7 @@ class AttendanceCard extends StatelessWidget {
                     style: AppTheme.titleMedium,
                   ),
                   Text(
-                    '${attendance.stdSubAtdDetails.subjects.length} Subjects (with Labs)',
+                    '${attendance.stdSubAtdDetails.subjects.length} Subjects (incl. Labs)',
                     style: AppTheme.titleMedium.copyWith(
                       fontSize: 15,
                       fontWeight: FontWeight.normal,

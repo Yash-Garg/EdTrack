@@ -34,18 +34,7 @@ class _SplashScreenState extends State<SplashScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: const [
-            FlutterLogo(size: 100),
-            SizedBox(height: 60),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 70.0),
-              child: LinearProgressIndicator(),
-            ),
-          ],
-        ),
+        child: FlutterLogo(size: 100),
       ),
     );
   }

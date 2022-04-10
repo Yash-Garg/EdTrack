@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
@@ -31,30 +32,35 @@ class _HomePageState extends State<HomePage> {
           bloc: _homeCubit,
           builder: (context, state) {
             if (state.loading) {
-              return Center(child: CircularProgressIndicator());
+              return Center(
+                child: LottieBuilder.asset(
+                  'assets/loading.json',
+                  frameRate: FrameRate.max,
+                  width: MediaQuery.of(context).size.width / 1.5,
+                ),
+              );
             }
             if (state.user != null) {
-              return Padding(
+              return ListView(
+                physics: BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  children: [
-                    Header(user: state.user!),
-                    SizedBox(height: 20),
-                    AttendanceCard(attendance: state.attendance!),
-                  ],
-                ),
+                children: [
+                  Header(user: state.user!),
+                  SizedBox(height: 20),
+                  AttendanceCard(attendance: state.attendance!),
+                ],
               );
             }
             return Center(child: Text('Error fetching data...'));
           },
         ),
       ),
-      floatingActionButton: FloatingActionButton.extended(
-        icon: Icon(Icons.ios_share_outlined),
-        onPressed: () {},
-        label: Text('Share'),
-        backgroundColor: AppTheme.accentBlue,
-      ),
+      // floatingActionButton: FloatingActionButton.extended(
+      //   icon: Icon(Icons.ios_share_outlined),
+      //   onPressed: () {},
+      //   label: Text('Share'),
+      //   backgroundColor: AppTheme.accentBlue,
+      // ),
     );
   }
 }
