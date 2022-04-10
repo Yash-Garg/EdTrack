@@ -21,7 +21,7 @@ class LoginApi {
   }) async {
     try {
       final response = await dio.post(
-        Endpoints.tokenEndpoint,
+        Endpoints.token,
         data: {
           'grant_type': 'password',
           'username': username,
