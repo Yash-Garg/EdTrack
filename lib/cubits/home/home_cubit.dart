@@ -18,9 +18,9 @@ class HomeCubit extends Cubit<HomeState> {
 
   final _creds = getIt<ConfigCubit>().state.credentials!;
 
-  started() {
-    _getDetails();
-    _getAttendance();
+  started() async {
+    await _getDetails();
+    await _getAttendance();
     emit(state.copyWith(loading: false));
   }
 

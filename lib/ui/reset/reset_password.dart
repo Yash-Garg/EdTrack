@@ -111,7 +111,6 @@ class _ResetPasswordState extends State<ResetPassword> {
         mobileNumber: _mobileController.text.trim(),
       );
 
-      await Future.delayed(Duration(seconds: 5));
       response.fold(
         (sent) {
           if (sent) {

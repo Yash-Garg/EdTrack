@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Home')),
       body: SafeArea(
         child: BlocBuilder<HomeCubit, HomeState>(
           bloc: _homeCubit,
@@ -31,18 +32,7 @@ class _HomePageState extends State<HomePage> {
               return Center(child: CircularProgressIndicator());
             }
             if (state.user != null) {
-              return Padding(
-                padding: const EdgeInsets.all(12.0),
-                child: Column(
-                  children: [
-                    Row(
-                      children: [
-                        Text('Welcome ${state.user!.firstName}'),
-                      ],
-                    ),
-                  ],
-                ),
-              );
+              return Text('Welcome ${state.user!.firstName}');
             }
             return Center(child: Text('ERROR FETCHING DATA'));
           },

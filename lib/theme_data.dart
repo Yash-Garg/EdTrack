@@ -14,6 +14,7 @@ class AppTheme {
       centerTitle: true,
       backgroundColor: ThemeData().scaffoldBackgroundColor,
       iconTheme: IconThemeData(color: Colors.black),
+      titleTextStyle: TextStyle(color: Colors.black),
       elevation: 0,
     ),
     fontFamily: fontFamily,
