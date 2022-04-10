@@ -49,7 +49,6 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
               ..contextId = model.contextId,
           ));
 
-          Navigator.pop(context);
           Navigator.pushReplacement(
             context,
             CupertinoPageRoute(builder: (_) => HomePage()),
@@ -57,7 +56,6 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
         }
       },
       (err) {
-        Navigator.pop(context);
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(content: Text(err.message!)),
         );

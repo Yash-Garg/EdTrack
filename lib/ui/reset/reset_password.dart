@@ -12,6 +12,7 @@ class ResetPassword extends StatefulWidget {
 }
 
 class _ResetPasswordState extends State<ResetPassword> {
+  bool _isLoading = false;
   final _admissionController = TextEditingController();
   final _mobileController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -48,6 +49,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 SizedBox(height: 30),
                 CustomTextField(
+                  isReadOnly: _isLoading,
                   controller: _admissionController,
                   validator: (val) => val != null && val.isNotEmpty
                       ? null
@@ -60,6 +62,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 ),
                 SizedBox(height: 20),
                 CustomTextField(
+                  isReadOnly: _isLoading,
                   controller: _mobileController,
                   validator: (val) =>
                       val != null && val.isNotEmpty && val.length == 10
@@ -79,11 +82,29 @@ class _ResetPasswordState extends State<ResetPassword> {
       ),
       floatingActionButton: WideFab(
         label: 'Reset',
+        isLoading: _isLoading,
         onPressed: () async {
-          // getIt<LoginApi>().resetPassword(
-          //   admissionNumber: _admissionController.text.trim(),
-          //   mobileNumber: _mobileController.text.trim(),
-          // );
+          if (formKey.currentState?.validate() ?? false) {
+            FocusManager.instance.primaryFocus?.unfocus();
+            setState(() {
+              _isLoading = true;
+            });
+            // final response = await getIt<LoginApi>().resetPassword(
+            //   admissionNumber: _admissionController.text.trim(),
+            //   mobileNumber: _mobileController.text.trim(),
+            // );
+
+            // Navigator.of(context)
+            //   ..pop()
+            //   ..pop();
+
+            // response.fold(
+            //   (sent) {
+            //     if (sent) {}
+            //   },
+            //   (r) => null,
+            // );
+          }
         },
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,

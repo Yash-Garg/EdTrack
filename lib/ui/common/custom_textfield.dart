@@ -4,7 +4,7 @@ import '../../theme_data.dart';
 
 class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
-  final bool obscure;
+  final bool obscure, isReadOnly;
   final InputDecoration decoration;
   final Function(String?) validator;
 
@@ -13,6 +13,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.validator,
     required this.decoration,
+    this.isReadOnly = false,
     this.obscure = false,
   }) : super(key: key);
 
@@ -24,6 +25,7 @@ class CustomTextField extends StatelessWidget {
       cursorColor: AppTheme.mildBlack,
       maxLines: 1,
       obscureText: obscure,
+      readOnly: isReadOnly,
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (val) => validator(val),
       decoration: decoration,

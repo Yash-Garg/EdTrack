@@ -6,7 +6,6 @@ import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
 import '../../theme_data.dart';
 import '../common/custom_textfield.dart';
-import '../common/loading_dialog.dart';
 import '../common/wide_fab.dart';
 import '../reset/reset_password.dart';
 
@@ -20,6 +19,8 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> {
   // Initially password is obscure
   bool _obscureText = true;
+  bool _isLoading = false;
+
   final _userController = TextEditingController();
   final _passController = TextEditingController();
   final formKey = GlobalKey<FormState>();
@@ -65,6 +66,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 30),
                   CustomTextField(
+                    isReadOnly: _isLoading,
                     controller: _userController,
                     validator: (val) => val != null && val.isNotEmpty
                         ? null
@@ -77,6 +79,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
+                    isReadOnly: _isLoading,
                     controller: _passController,
                     validator: (val) => val != null && val.isNotEmpty
                         ? null
@@ -101,10 +104,14 @@ class _LoginPageState extends State<LoginPage> {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [
                       InkWell(
-                        onTap: () => Navigator.push(
-                          context,
-                          CupertinoPageRoute(builder: (_) => ResetPassword()),
-                        ),
+                        onTap: () {
+                          // Unfocus textfield before pushing route
+                          FocusManager.instance.primaryFocus?.unfocus();
+                          Navigator.push(
+                            context,
+                            CupertinoPageRoute(builder: (_) => ResetPassword()),
+                          );
+                        },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
@@ -127,6 +134,7 @@ class _LoginPageState extends State<LoginPage> {
       ),
       floatingActionButton: WideFab(
         label: 'Login',
+        isLoading: _isLoading,
         onPressed: _proceed,
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -135,12 +143,18 @@ class _LoginPageState extends State<LoginPage> {
 
   _proceed() async {
     if (formKey.currentState?.validate() ?? false) {
-      showLoadingDialog(context);
-      getIt<ConfigCubit>().setCredentials(
+      FocusManager.instance.primaryFocus?.unfocus();
+      setState(() {
+        _isLoading = true;
+      });
+      await getIt<ConfigCubit>().setCredentials(
         context: context,
         username: _userController.text.trim(),
         password: _passController.text.trim(),
       );
+      setState(() {
+        _isLoading = false;
+      });
     }
   }
 }
