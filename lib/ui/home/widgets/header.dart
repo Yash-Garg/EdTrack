@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/endpoints.dart';
 import '../../../models/user/user_model.dart';
+import '../../user/user_profile.dart';
 
 class Header extends StatelessWidget {
   final User user;
@@ -34,7 +36,10 @@ class Header extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => _optionSheet(context),
+            onTap: () => Navigator.push(
+              context,
+              CupertinoPageRoute(builder: (_) => UserProfile(user: user)),
+            ),
             child: ClipOval(
               child: CachedNetworkImage(
                 imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
@@ -46,34 +51,6 @@ class Header extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  _optionSheet(BuildContext context) async {
-    showModalBottomSheet(
-      useRootNavigator: true,
-      isScrollControlled: true,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15),
-          topRight: Radius.circular(15),
-        ),
-      ),
-      context: context,
-      builder: (context) {
-        return DraggableScrollableSheet(
-          expand: false,
-          initialChildSize: 0.7,
-          maxChildSize: 0.95,
-          builder: (context, scrollController) {
-            return SingleChildScrollView(
-              physics: BouncingScrollPhysics(),
-              controller: scrollController,
-              child: Text('data'),
-            );
-          },
-        );
-      },
     );
   }
 }
