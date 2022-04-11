@@ -29,12 +29,6 @@ class SubjectsListView extends StatelessWidget {
               padding: const EdgeInsets.all(8.0),
               child: ListTile(
                 horizontalTitleGap: 20,
-                // leading: Column(
-                //   mainAxisAlignment: MainAxisAlignment.center,
-                //   children: const [
-                //     Icon(Icons.shield_outlined),
-                //   ],
-                // ),
                 title: Text(
                   subject.name,
                   style: AppTheme.bodyMedium.copyWith(fontSize: 16),

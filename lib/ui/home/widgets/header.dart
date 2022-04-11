@@ -33,16 +33,30 @@ class Header extends StatelessWidget {
               ],
             ),
           ),
-          ClipOval(
-            child: CachedNetworkImage(
-              imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
-              fit: BoxFit.cover,
-              width: 50,
-              height: 50,
+          InkWell(
+            onTap: () => _optionSheet(context),
+            child: ClipOval(
+              child: CachedNetworkImage(
+                imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
+                fit: BoxFit.cover,
+                width: 50,
+                height: 50,
+              ),
             ),
           )
         ],
       ),
+    );
+  }
+
+  _optionSheet(BuildContext context) async {
+    showModalBottomSheet(
+      context: context,
+      builder: (ctx) {
+        return Container(
+          height: MediaQuery.of(context).size.height,
+        );
+      },
     );
   }
 }
