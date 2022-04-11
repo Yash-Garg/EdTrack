@@ -51,10 +51,10 @@ class _HomePageState extends State<HomePage> {
                   SizedBox(height: 20),
                   AttendanceCard(attendance: state.attendance!),
                   Padding(
-                    padding: const EdgeInsets.only(left: 5.0, bottom: 5.0),
+                    padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
                     child: Text(
                       'Your Statistics',
-                      style: AppTheme.titleMedium.copyWith(
+                      style: AppTheme.bodyMedium.copyWith(
                         color: Colors.black,
                         fontSize: 22,
                       ),

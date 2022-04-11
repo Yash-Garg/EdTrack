@@ -16,6 +16,11 @@ class AppTheme {
     letterSpacing: 1,
   );
 
+  static TextStyle bodyMedium = AppTheme.titleMedium.copyWith(
+    fontSize: 14,
+    color: AppTheme.mildBlack,
+  );
+
   static ThemeData themeData = ThemeData(
     primaryColor: accentBlue,
     appBarTheme: AppBarTheme(
