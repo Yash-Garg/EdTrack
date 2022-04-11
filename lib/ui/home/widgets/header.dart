@@ -18,20 +18,20 @@ class Header extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              FittedBox(
-                child: Text(
+          Flexible(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
                   'Welcome, ${user.firstName}!',
                   style: TextStyle(
                     fontSize: 25,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-              Text(user.email),
-            ],
+                Text(user.email),
+              ],
+            ),
           ),
           ClipOval(
             child: CachedNetworkImage(

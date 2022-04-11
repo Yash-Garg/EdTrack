@@ -32,7 +32,7 @@ class CustomCardTile extends StatelessWidget {
               padding: const EdgeInsets.all(12.0),
               child: CircleAvatar(
                 maxRadius: 25,
-                backgroundColor: Colors.white,
+                backgroundColor: Color.fromARGB(156, 255, 255, 255),
                 child: Icon(
                   icon,
                   color: iconColor,
@@ -50,10 +50,7 @@ class CustomCardTile extends StatelessWidget {
               ),
               subtitle: Text(
                 subtitle,
-                style: AppTheme.titleMedium.copyWith(
-                  fontSize: 15,
-                  color: Colors.black,
-                ),
+                style: AppTheme.bodyMedium.copyWith(fontSize: 15),
               ),
             ),
           ],

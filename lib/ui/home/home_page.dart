@@ -9,6 +9,7 @@ import '../../utils/constants.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
 import 'widgets/stats_row.dart';
+import 'widgets/subjects_list_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,28 +44,44 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (state.user != null) {
-              return ListView(
-                physics: BouncingScrollPhysics(),
-                padding: const EdgeInsets.all(20.0),
-                children: [
-                  Header(user: state.user!),
-                  SizedBox(height: 20),
-                  AttendanceCard(attendance: state.attendance!),
-                  Padding(
-                    padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
-                    child: Text(
-                      'Your Statistics',
-                      style: AppTheme.bodyMedium.copyWith(
-                        color: Colors.black,
-                        fontSize: 22,
+              return Scrollbar(
+                child: ListView(
+                  physics: BouncingScrollPhysics(),
+                  padding: const EdgeInsets.all(20.0),
+                  children: [
+                    Header(user: state.user!),
+                    SizedBox(height: 20),
+                    AttendanceCard(attendance: state.attendance!),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
+                      child: Text(
+                        'Your Statistics',
+                        style: AppTheme.bodyMedium.copyWith(
+                          color: Colors.black,
+                          fontSize: 22,
+                        ),
                       ),
                     ),
-                  ),
-                  StatsRow(
-                    attendanceDetails: state.attendance!.stdSubAtdDetails,
-                    batch: state.userBatch!,
-                  ),
-                ],
+                    StatsRow(
+                      attendanceDetails: state.attendance!.stdSubAtdDetails,
+                      batch: state.userBatch!,
+                    ),
+                    SizedBox(height: 20),
+                    Padding(
+                      padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
+                      child: Text(
+                        'All Subjects',
+                        style: AppTheme.bodyMedium.copyWith(
+                          color: Colors.black,
+                          fontSize: 22,
+                        ),
+                      ),
+                    ),
+                    SubjectsListView(
+                      subjects: state.attendance!.stdSubAtdDetails.subjects,
+                    ),
+                  ],
+                ),
               );
             }
             return Center(
