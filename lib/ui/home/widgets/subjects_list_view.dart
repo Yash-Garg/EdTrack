@@ -21,46 +21,44 @@ class SubjectsListView extends StatelessWidget {
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
-          child: SizedBox(
-            // height: 120,
-            child: Card(
-              elevation: .0,
-              color: AppTheme.mildBlack.withOpacity(.05),
-              shape: AppTheme.cardShape,
-              child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: ListTile(
-                  // leading: Column(
-                  //   mainAxisAlignment: MainAxisAlignment.center,
-                  //   children: const [
-                  //     Icon(Icons.shield_outlined),
-                  //   ],
-                  // ),
-                  title: Text(
-                    subject.name,
-                    style: AppTheme.bodyMedium.copyWith(fontSize: 16),
-                  ),
-                  subtitle: Padding(
-                    padding: const EdgeInsets.only(top: 5.0),
-                    child: Text(
-                      'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
-                      style: AppTheme.bodyMedium.copyWith(
-                        color: Colors.black45,
-                      ),
+          child: Card(
+            elevation: .0,
+            color: AppTheme.mildBlack.withOpacity(.05),
+            shape: AppTheme.cardShape,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: ListTile(
+                horizontalTitleGap: 20,
+                // leading: Column(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: const [
+                //     Icon(Icons.shield_outlined),
+                //   ],
+                // ),
+                title: Text(
+                  subject.name,
+                  style: AppTheme.bodyMedium.copyWith(fontSize: 16),
+                ),
+                subtitle: Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: Text(
+                    'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
+                    style: AppTheme.bodyMedium.copyWith(
+                      color: Colors.black45,
                     ),
                   ),
-                  trailing: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CircularProgressIndicator(
-                        value: (subject.percentageAttendance / 100),
-                        backgroundColor: AppTheme.mildBlack.withOpacity(.1),
-                        valueColor: AlwaysStoppedAnimation(
-                          _getColor(subject.percentageAttendance),
-                        ),
+                ),
+                trailing: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      value: (subject.percentageAttendance / 100),
+                      backgroundColor: AppTheme.mildBlack.withOpacity(.1),
+                      valueColor: AlwaysStoppedAnimation(
+                        AppTheme.getColor(subject.percentageAttendance),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -68,18 +66,5 @@ class SubjectsListView extends StatelessWidget {
         );
       },
     );
-  }
-
-  Color _getColor(double percentage) {
-    Color barColor = Colors.blueAccent;
-
-    if (percentage >= 75.0) {
-      barColor = Colors.green;
-    } else if (percentage <= 50.0) {
-      barColor = Colors.redAccent;
-    } else if (percentage < 75.0 && percentage > 50.0) {
-      barColor = Colors.orangeAccent;
-    }
-    return barColor;
   }
 }

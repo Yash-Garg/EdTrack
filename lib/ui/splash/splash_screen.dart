@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
@@ -39,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(child: FlutterLogo(size: 100)),
           Positioned(
-            bottom: 40.0,
+            bottom: Platform.isIOS ? 30.0 : 15.0,
             child: Column(
               children: [
                 Text(

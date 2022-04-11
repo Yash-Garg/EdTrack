@@ -31,7 +31,6 @@ class AppTheme {
       elevation: 0,
     ),
     fontFamily: fontFamily,
-    visualDensity: VisualDensity.adaptivePlatformDensity,
     inputDecorationTheme: InputDecorationTheme(
       prefixIconColor: mildBlack,
       suffixIconColor: Colors.black,
@@ -45,4 +44,17 @@ class AppTheme {
   static const cardShape = RoundedRectangleBorder(
     borderRadius: BorderRadius.all(Radius.circular(cardRadius)),
   );
+
+  static Color getColor(double percentage) {
+    Color color = Colors.blueAccent;
+
+    if (percentage >= 75.0) {
+      color = Colors.green;
+    } else if (percentage <= 50.0) {
+      color = Colors.redAccent;
+    } else if (percentage < 75.0 && percentage > 50.0) {
+      color = Colors.orangeAccent;
+    }
+    return color;
+  }
 }
