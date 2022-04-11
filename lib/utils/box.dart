@@ -45,4 +45,10 @@ class BoxUtils {
     CredentialObject creds = box.get(BoxConstants.credentialsKey)!;
     return creds;
   }
+
+  static Future deleteCredentials() async {
+    await Hive.close();
+    await Hive.deleteBoxFromDisk(Constants.HIVE_DB);
+    await Hive.deleteFromDisk();
+  }
 }

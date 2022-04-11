@@ -40,12 +40,26 @@ class SubjectsListView extends StatelessWidget {
                     subject.name,
                     style: AppTheme.bodyMedium.copyWith(fontSize: 16),
                   ),
-                  subtitle: Text(
-                    'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
-                    style: AppTheme.bodyMedium.copyWith(color: Colors.black45),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
+                      style: AppTheme.bodyMedium.copyWith(
+                        color: Colors.black45,
+                      ),
+                    ),
                   ),
-                  trailing: Text(
-                    subject.percentageAttendance.toStringAsFixed(2) + '%',
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        value: (subject.percentageAttendance / 100),
+                        backgroundColor: AppTheme.mildBlack.withOpacity(.1),
+                        valueColor: AlwaysStoppedAnimation(
+                          _getColor(subject.percentageAttendance),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -54,5 +68,18 @@ class SubjectsListView extends StatelessWidget {
         );
       },
     );
+  }
+
+  Color _getColor(double percentage) {
+    Color barColor = Colors.blueAccent;
+
+    if (percentage >= 75.0) {
+      barColor = Colors.green;
+    } else if (percentage <= 50.0) {
+      barColor = Colors.redAccent;
+    } else if (percentage < 75.0 && percentage > 50.0) {
+      barColor = Colors.orangeAccent;
+    }
+    return barColor;
   }
 }
