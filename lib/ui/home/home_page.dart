@@ -1,14 +1,14 @@
-import 'package:akgec_erp/theme_data.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
+import '../../theme_data.dart';
 import '../../utils/constants.dart';
-import '../common/custom_card_tile.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
+import 'widgets/stats_row.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -43,8 +43,6 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (state.user != null) {
-              final attendanceDetails = state.attendance!.stdSubAtdDetails;
-
               return ListView(
                 physics: BouncingScrollPhysics(),
                 padding: const EdgeInsets.all(20.0),
@@ -62,32 +60,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                     ),
                   ),
-                  SizedBox(
-                    height: 190,
-                    child: ListView(
-                      scrollDirection: Axis.horizontal,
-                      physics: BouncingScrollPhysics(),
-                      children: [
-                        CustomCardTile(
-                          title: 'Overall Present',
-                          subtitle:
-                              '${attendanceDetails.overallPresent.toInt()} Lectures',
-                          icon: Icons.done_all,
-                          bgColor: Color.fromARGB(255, 167, 248, 209),
-                          iconColor: Colors.green,
-                        ),
-                        SizedBox(width: 10),
-                        CustomCardTile(
-                          title: 'Total Lectures',
-                          subtitle:
-                              '${attendanceDetails.overallLecture.toInt()} Lectures',
-                          icon: Icons.date_range,
-                          bgColor: Color.fromARGB(255, 209, 195, 255),
-                          iconColor: Colors.purple,
-                        ),
-                      ],
-                    ),
-                  )
+                  StatsRow(
+                      attendanceDetails: state.attendance!.stdSubAtdDetails),
                 ],
               );
             }

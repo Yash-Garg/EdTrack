@@ -33,22 +33,12 @@ class Header extends StatelessWidget {
               Text(user.email),
             ],
           ),
-          InkWell(
-            onTap: () {
-              showModalBottomSheet(
-                context: context,
-                builder: (context) {
-                  return Column();
-                },
-              );
-            },
-            child: ClipOval(
-              child: CachedNetworkImage(
-                imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
-                fit: BoxFit.cover,
-                width: 50,
-                height: 50,
-              ),
+          ClipOval(
+            child: CachedNetworkImage(
+              imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
+              fit: BoxFit.cover,
+              width: 50,
+              height: 50,
             ),
           )
         ],
