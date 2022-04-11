@@ -7,6 +7,7 @@ class HomeState with _$HomeState {
     required bool hasError,
     User? user,
     Attendance? attendance,
+    UserBatch? userBatch,
   }) = _HomeState;
 
   factory HomeState.initial() => _HomeState(
@@ -14,6 +15,7 @@ class HomeState with _$HomeState {
         hasError: false,
         user: null,
         attendance: null,
+        userBatch: null,
       );
 
   factory HomeState.fromJson(Map<String, dynamic> json) =>

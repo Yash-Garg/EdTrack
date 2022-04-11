@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 import '../../api/data_api.dart';
 import '../../injectable.dart';
 import '../../models/user/user_attendance.dart';
+import '../../models/user/user_batch.dart';
 import '../../models/user/user_model.dart';
 import '../config/config_cubit.dart';
 
@@ -20,6 +21,7 @@ class HomeCubit extends Cubit<HomeState> {
 
   started() async {
     _getDetails();
+    _getBatchDetails();
     await _getAttendance();
     emit(state.copyWith(loading: false));
   }
@@ -46,6 +48,20 @@ class HomeCubit extends Cubit<HomeState> {
 
     attResponse.fold(
       (attendance) => emit(state.copyWith(attendance: attendance)),
+      (err) => emit(state.copyWith(hasError: true, loading: false)),
+    );
+  }
+
+  _getBatchDetails() async {
+    final batchResponse = await getIt<DataApi>().getBatchDetails(
+      userId: _creds.userId.toString(),
+      authToken: _creds.accessToken!,
+      rx: _creds.rx.toString(),
+      contextId: _creds.contextId!,
+    );
+
+    batchResponse.fold(
+      (batch) => emit(state.copyWith(userBatch: batch)),
       (err) => emit(state.copyWith(hasError: true, loading: false)),
     );
   }

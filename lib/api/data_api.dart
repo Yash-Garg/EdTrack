@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../models/error/api_error.dart';
 import '../models/user/user_attendance.dart';
+import '../models/user/user_batch.dart';
 import '../models/user/user_model.dart';
 import 'endpoints.dart';
 
@@ -66,6 +67,36 @@ class DataApi {
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to fetch details'));
+    }
+  }
+
+  Future<Either<UserBatch, ApiError>> getBatchDetails({
+    required String userId,
+    required String authToken,
+    required String rx,
+    required String contextId,
+  }) async {
+    try {
+      final response = await dio.get(
+        Endpoints.batchDetails,
+        options: Options(
+          responseType: ResponseType.json,
+          headers: {
+            'authorization': 'Bearer $authToken',
+            'X-UserId': userId,
+            'X-RX': rx,
+            'X-ContextId': contextId,
+          },
+        ),
+      );
+
+      final batchDetails = UserBatch.fromJson(response.data[0]);
+
+      debugPrint('BATCH - ${batchDetails.batchName}');
+      return left(batchDetails);
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
+      return right(ApiError(message: 'Failed to fetch batch details'));
     }
   }
 }

@@ -36,7 +36,7 @@ class CustomCardTile extends StatelessWidget {
                 child: Icon(
                   icon,
                   color: iconColor,
-                  size: 30,
+                  size: 25,
                 ),
               ),
             ),

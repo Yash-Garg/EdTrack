@@ -1,23 +1,35 @@
 import 'package:flutter/material.dart';
 
 import '../../../models/user/user_attendance.dart';
+import '../../../models/user/user_batch.dart';
 import '../../common/custom_card_tile.dart';
 
 class StatsRow extends StatelessWidget {
   const StatsRow({
     Key? key,
     required this.attendanceDetails,
+    required this.batch,
   }) : super(key: key);
 
   final StdSubAtdDetails attendanceDetails;
+  final UserBatch batch;
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 190,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: ListView(
+        physics: BouncingScrollPhysics(),
+        scrollDirection: Axis.horizontal,
         children: [
+          CustomCardTile(
+            title: 'Course',
+            subtitle: '${batch.courseName} (${batch.semester} SEM)',
+            icon: Icons.account_balance_rounded,
+            bgColor: Color.fromARGB(255, 253, 203, 203),
+            iconColor: Colors.red,
+          ),
+          SizedBox(width: 10),
           CustomCardTile(
             title: 'Overall Present',
             subtitle: '${attendanceDetails.overallPresent.toInt()} Lectures',
@@ -25,7 +37,7 @@ class StatsRow extends StatelessWidget {
             bgColor: Color.fromARGB(255, 167, 248, 209),
             iconColor: Colors.green,
           ),
-          // SizedBox(width: 10),
+          SizedBox(width: 10),
           CustomCardTile(
             title: 'Total Lectures',
             subtitle: '${attendanceDetails.overallLecture.toInt()} Lectures',

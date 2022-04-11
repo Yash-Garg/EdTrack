@@ -61,7 +61,9 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                   StatsRow(
-                      attendanceDetails: state.attendance!.stdSubAtdDetails),
+                    attendanceDetails: state.attendance!.stdSubAtdDetails,
+                    batch: state.userBatch!,
+                  ),
                 ],
               );
             }
