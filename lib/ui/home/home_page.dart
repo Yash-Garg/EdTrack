@@ -45,43 +45,47 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (state.user != null) {
-              return Scrollbar(
-                child: ListView(
-                  physics: BouncingScrollPhysics(),
-                  padding: const EdgeInsets.all(20.0),
-                  children: [
-                    Header(user: state.user!),
-                    SizedBox(height: 20),
-                    AttendanceCard(attendance: state.attendance!),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
-                      child: Text(
-                        'Your Statistics',
-                        style: AppTheme.bodyMedium.copyWith(
-                          color: Colors.black,
-                          fontSize: 22,
+              return RefreshIndicator(
+                onRefresh: () async => await _homeCubit.refresh(),
+                color: AppTheme.accentBlue,
+                child: Scrollbar(
+                  child: ListView(
+                    physics: BouncingScrollPhysics(),
+                    padding: const EdgeInsets.all(20.0),
+                    children: [
+                      Header(user: state.user!),
+                      SizedBox(height: 20),
+                      AttendanceCard(attendance: state.attendance!),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
+                        child: Text(
+                          'Your Statistics',
+                          style: AppTheme.bodyMedium.copyWith(
+                            color: Colors.black,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
-                    ),
-                    StatsRow(
-                      attendanceDetails: state.attendance!.stdSubAtdDetails,
-                      batch: state.userBatch!,
-                    ),
-                    SizedBox(height: 20),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
-                      child: Text(
-                        'All Subjects',
-                        style: AppTheme.bodyMedium.copyWith(
-                          color: Colors.black,
-                          fontSize: 22,
+                      StatsRow(
+                        attendanceDetails: state.attendance!.stdSubAtdDetails,
+                        batch: state.userBatch!,
+                      ),
+                      SizedBox(height: 20),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
+                        child: Text(
+                          'All Subjects',
+                          style: AppTheme.bodyMedium.copyWith(
+                            color: Colors.black,
+                            fontSize: 22,
+                          ),
                         ),
                       ),
-                    ),
-                    SubjectsListView(
-                      subjects: state.attendance!.stdSubAtdDetails.subjects,
-                    ),
-                  ],
+                      SubjectsListView(
+                        subjects: state.attendance!.stdSubAtdDetails.subjects,
+                      ),
+                    ],
+                  ),
                 ),
               );
             }

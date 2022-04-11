@@ -51,10 +51,27 @@ class Header extends StatelessWidget {
 
   _optionSheet(BuildContext context) async {
     showModalBottomSheet(
+      useRootNavigator: true,
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(15),
+          topRight: Radius.circular(15),
+        ),
+      ),
       context: context,
-      builder: (ctx) {
-        return Container(
-          height: MediaQuery.of(context).size.height,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          expand: false,
+          initialChildSize: 0.7,
+          maxChildSize: 0.95,
+          builder: (context, scrollController) {
+            return SingleChildScrollView(
+              physics: BouncingScrollPhysics(),
+              controller: scrollController,
+              child: Text('data'),
+            );
+          },
         );
       },
     );

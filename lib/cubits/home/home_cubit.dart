@@ -26,6 +26,12 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(loading: false));
   }
 
+  refresh() async {
+    _getDetails();
+    _getBatchDetails();
+    await _getAttendance();
+  }
+
   _getDetails() async {
     final userResponse = await getIt<DataApi>().getUserDetails(
       userId: _creds.userId.toString(),
