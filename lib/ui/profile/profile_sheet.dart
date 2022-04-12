@@ -1,8 +1,7 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../api/endpoints.dart';
-import '../../../models/user/user_model.dart';
+import '../../models/user/user_model.dart';
+import 'widgets/user_column.dart';
 
 class ProfileSheet extends StatelessWidget {
   final User user;
@@ -43,20 +42,14 @@ class ProfileSheet extends StatelessWidget {
                 ],
               ),
             ),
-            SizedBox(
-              height: 130,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(10000),
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          '${Endpoints.fileBlob}/${user.profilePictureId}',
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                ],
+            UserColumn(user: user),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 20.0),
+              child: Divider(
+                thickness: 1,
+                height: 10,
+                indent: 30,
+                endIndent: 30,
               ),
             ),
           ],

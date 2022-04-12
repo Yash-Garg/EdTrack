@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../api/endpoints.dart';
 import '../../../models/user/user_model.dart';
-import 'profile_sheet.dart';
+import '../../profile/profile_sheet.dart';
 
 class Header extends StatelessWidget {
   final User user;
