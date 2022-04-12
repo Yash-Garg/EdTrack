@@ -78,4 +78,40 @@ class LoginApi {
       ));
     }
   }
+
+  Future<Either<bool, ApiError>> changePassword({
+    required String authToken,
+    required String userId,
+    required String newPassword,
+    required String oldPassword,
+  }) async {
+    try {
+      final response = await dio.post(
+        Endpoints.changePassword,
+        data: {
+          'oldPassword': oldPassword,
+          'newPassword': newPassword,
+          'repeatNewPassword': newPassword,
+          'userId': userId,
+        },
+        options: Options(
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+            'Authorization': 'Bearer $authToken',
+          },
+        ),
+      );
+
+      if (response.statusCode == 201) {
+        return left(true);
+      } else {
+        return left(false);
+      }
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
+      return right(ApiError(
+        message: 'Failed! Please recheck your entered passwords.',
+      ));
+    }
+  }
 }

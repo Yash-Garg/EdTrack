@@ -61,12 +61,11 @@ class BoxUtils {
       context,
       CupertinoPageRoute(builder: (_) => LoginPage()),
       (route) => false,
-    ).then(
-      (_) => showCustomSnack(
-        context: context,
-        message: 'Signed out successfully.',
-        bgColor: Colors.green,
-      ),
+    );
+    showCustomSnack(
+      context: context,
+      message: 'Signed out successfully.',
+      bgColor: Colors.green,
     );
   }
 }
