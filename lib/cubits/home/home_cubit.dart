@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
@@ -10,7 +11,6 @@ import '../../models/user/user_model.dart';
 import '../config/config_cubit.dart';
 
 part '../../generated/cubits/home/home_cubit.freezed.dart';
-part '../../generated/cubits/home/home_cubit.g.dart';
 part 'home_state.dart';
 
 @lazySingleton
@@ -20,6 +20,7 @@ class HomeCubit extends Cubit<HomeState> {
   final _creds = getIt<ConfigCubit>().state.credentials!;
 
   started() async {
+    debugPrint('HOME CUBIT STARTED');
     _getDetails();
     _getBatchDetails();
     await _getAttendance();
@@ -73,6 +74,7 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   reset() {
+    debugPrint('HOME CUBIT RESET');
     emit(HomeState.initial());
   }
 }

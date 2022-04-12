@@ -19,6 +19,7 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
   ConfigCubit() : super(ConfigState.initial());
 
   started() async {
+    debugPrint('CONFIG CUBIT STARTED');
     final credentials = await BoxUtils.getCredentialBox();
     emit(state.copyWith(credentials: credentials));
   }
@@ -62,6 +63,7 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
   }
 
   reset() {
+    debugPrint('CONFIG CUBIT RESET');
     emit(ConfigState.initial());
   }
 

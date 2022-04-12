@@ -17,7 +17,4 @@ class HomeState with _$HomeState {
         attendance: null,
         userBatch: null,
       );
-
-  factory HomeState.fromJson(Map<String, dynamic> json) =>
-      _$HomeStateFromJson(json);
 }

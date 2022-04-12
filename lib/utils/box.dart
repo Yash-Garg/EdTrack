@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
 import '../cubits/config/config_cubit.dart';
+import '../cubits/home/home_cubit.dart';
 import '../injectable.dart';
 import '../models/credential/credential_object.dart';
 import '../models/token/token_model.dart';
@@ -56,6 +57,7 @@ class BoxUtils {
     await Hive.close();
     await Hive.deleteBoxFromDisk(BoxConstants.credentials);
     await Hive.deleteFromDisk();
+    await getIt<HomeCubit>().reset();
     await getIt<ConfigCubit>().reset();
     Navigator.pushAndRemoveUntil(
       context,

@@ -44,8 +44,17 @@ class UserColumn extends StatelessWidget {
             letterSpacing: 0,
           ),
         ),
+        SizedBox(height: 10),
         Text(
-          'UID - ${user.loginName}',
+          'UUID - ${user.loginName}',
+          style: AppTheme.bodyMedium.copyWith(fontSize: 15),
+        ),
+        Text(
+          'Aadhaar No. - ${user.aadhaarNumber}',
+          style: AppTheme.bodyMedium.copyWith(fontSize: 15),
+        ),
+        Text(
+          'Admission No. - ${user.admissionNumber}',
           style: AppTheme.bodyMedium.copyWith(fontSize: 15),
         ),
       ],

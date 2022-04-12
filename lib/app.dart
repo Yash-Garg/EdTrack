@@ -1,32 +1,49 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/config/config_cubit.dart';
-import 'cubits/home/home_cubit.dart';
 import 'injectable.dart';
 import 'theme_data.dart';
 import 'ui/splash/splash_screen.dart';
 import 'utils/box.dart';
 import 'utils/constants.dart';
 
-class AttendanceApp extends StatelessWidget {
+class AttendanceApp extends StatefulWidget {
   const AttendanceApp({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
+  State<AttendanceApp> createState() => _AttendanceAppState();
+}
+
+class _AttendanceAppState extends State<AttendanceApp> {
+  @override
+  void initState() {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
     );
+    SystemChrome.setPreferredOrientations([
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitUp,
+    ]);
+    SchedulerBinding.instance?.addPostFrameCallback((_) {
+      getIt<ConfigCubit>().started();
+    });
+    super.initState();
+  }
 
+  @override
+  Widget build(BuildContext context) {
     return BlocListener<ConfigCubit, ConfigState>(
-      bloc: getIt<ConfigCubit>()..started(),
+      bloc: getIt<ConfigCubit>(),
       listener: (context, state) async {
         debugPrint('ConfigCubit - listener');
         BoxUtils.checkLogin().then((isLoggedIn) async {
           if (isLoggedIn) {
             debugPrint('ConfigCubit - isLoggedIn');
-            getIt<HomeCubit>().started();
+          } else {
+            debugPrint('ConfigCubit - isLoggedOut');
           }
         });
       },
