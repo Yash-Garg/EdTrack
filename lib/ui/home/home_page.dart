@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
             if (state.loading) {
               return Center(
                 child: LottieBuilder.asset(
-                  Constants.loadingAnim,
+                  Assets.loadingAnim,
                   frameRate: FrameRate.max,
                   width: MediaQuery.of(context).size.width / 1.5,
                 ),
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
             }
             return Center(
               child: LottieBuilder.asset(
-                Constants.errorAnim,
+                Assets.errorAnim,
                 frameRate: FrameRate.max,
               ),
             );

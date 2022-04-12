@@ -4,6 +4,7 @@ import 'package:lottie/lottie.dart';
 import '../../api/login_api.dart';
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
+import '../../utils/constants.dart';
 import '../common/custom_snackbar.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
@@ -45,7 +46,7 @@ class _ChangePasswordState extends State<ChangePassword> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LottieBuilder.asset('assets/password.json'),
+                  LottieBuilder.asset(Assets.passwordAnim),
                   Text(
                     'Change\nPassword.',
                     style: TextStyle(

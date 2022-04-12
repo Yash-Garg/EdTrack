@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
 import '../../theme_data.dart';
+import '../../utils/constants.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
 import '../password/reset_password.dart';
@@ -55,7 +56,7 @@ class _LoginPageState extends State<LoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SvgPicture.asset(
-                    'assets/login.svg',
+                    Assets.loginSvg,
                     height: 300,
                   ),
                   Text(

@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../api/login_api.dart';
 import '../../injectable.dart';
+import '../../utils/constants.dart';
 import '../common/custom_snackbar.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
@@ -42,7 +43,7 @@ class _ResetPasswordState extends State<ResetPassword> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SvgPicture.asset(
-                  'assets/forgot.svg',
+                  Assets.resetSvg,
                   height: 300,
                 ),
                 Text(
