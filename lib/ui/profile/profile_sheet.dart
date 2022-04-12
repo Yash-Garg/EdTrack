@@ -5,6 +5,8 @@ import '../../models/user/user_model.dart';
 import '../../theme_data.dart';
 import '../../utils/box.dart';
 import '../password/change_password.dart';
+import 'widgets/about_app.dart';
+import 'widgets/header_cross.dart';
 import 'widgets/setting_card.dart';
 import 'widgets/user_column.dart';
 
@@ -24,29 +26,7 @@ class ProfileSheet extends StatelessWidget {
           physics: BouncingScrollPhysics(),
           controller: controller,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(
-                horizontal: 25.0,
-                vertical: 30.0,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Container(
-                    height: 40,
-                    width: 40,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: Colors.grey.withOpacity(.3),
-                    ),
-                    child: IconButton(
-                      onPressed: () => Navigator.pop(context),
-                      icon: Icon(Icons.close),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+            HeaderCross(),
             UserColumn(user: user),
             Padding(
               padding: const EdgeInsets.all(25.0),
@@ -74,7 +54,7 @@ class ProfileSheet extends StatelessWidget {
                     title: 'About',
                     leading: Icons.info_outline_rounded,
                     trailing: Icons.keyboard_arrow_right_outlined,
-                    onTap: () {},
+                    onTap: () => _aboutSheet(context),
                   ),
                 ],
               ),
@@ -123,6 +103,21 @@ class ProfileSheet extends StatelessWidget {
           ],
         );
       },
+    );
+  }
+
+  _aboutSheet(BuildContext context) {
+    Navigator.pop(context);
+    showModalBottomSheet(
+      context: context,
+      useRootNavigator: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(50),
+          topRight: Radius.circular(50),
+        ),
+      ),
+      builder: (_) => AboutAppSheet(),
     );
   }
 }
