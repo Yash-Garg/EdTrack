@@ -1,10 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../api/endpoints.dart';
 import '../../../models/user/user_model.dart';
-import '../../user/user_profile.dart';
 
 class Header extends StatelessWidget {
   final User user;
@@ -36,10 +34,7 @@ class Header extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => Navigator.push(
-              context,
-              CupertinoPageRoute(builder: (_) => UserProfile(user: user)),
-            ),
+            onTap: () => _showProfileSheet(context),
             child: ClipOval(
               child: CachedNetworkImage(
                 imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
@@ -51,6 +46,19 @@ class Header extends StatelessWidget {
           )
         ],
       ),
+    );
+  }
+
+  void _showProfileSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return DraggableScrollableSheet(
+          builder: ((context, scrollController) {
+            return Column();
+          }),
+        );
+      },
     );
   }
 }
