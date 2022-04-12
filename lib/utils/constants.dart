@@ -6,6 +6,7 @@ class Constants {
 class Assets {
   static String basePath = 'assets';
 
+  static String appIcon = '$basePath/ic_icon.png';
   static String loginSvg = '$basePath/login.svg';
   static String resetSvg = '$basePath/forgot.svg';
 

@@ -6,6 +6,7 @@ import 'package:flutter/scheduler.dart';
 
 import '../../theme_data.dart';
 import '../../utils/box.dart';
+import '../common/app_logo.dart';
 import '../home/home_page.dart';
 import '../login/login_page.dart';
 
@@ -39,7 +40,7 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Stack(
         alignment: AlignmentDirectional.bottomCenter,
         children: [
-          Center(child: FlutterLogo(size: 100)),
+          Center(child: AppLogo()),
           Positioned(
             bottom: Platform.isIOS ? 30.0 : 15.0,
             child: Column(

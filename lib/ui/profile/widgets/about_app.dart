@@ -3,6 +3,7 @@ import 'package:package_info_plus/package_info_plus.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../../../theme_data.dart';
+import '../../common/app_logo.dart';
 
 class AboutAppSheet extends StatefulWidget {
   const AboutAppSheet({
@@ -36,7 +37,7 @@ class _AboutAppSheetState extends State<AboutAppSheet> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SizedBox(height: 70),
-        FlutterLogo(size: 100),
+        AppLogo(),
         SizedBox(height: 50),
         Text(
           'App Version - v$version',
