@@ -5,6 +5,7 @@ import 'package:injectable/injectable.dart';
 
 import '../../api/data_api.dart';
 import '../../injectable.dart';
+import '../../models/credential/credential_object.dart';
 import '../../models/user/user_attendance.dart';
 import '../../models/user/user_batch.dart';
 import '../../models/user/user_model.dart';
@@ -17,10 +18,12 @@ part 'home_state.dart';
 class HomeCubit extends Cubit<HomeState> {
   HomeCubit() : super(HomeState.initial());
 
-  final _creds = getIt<ConfigCubit>().state.credentials!;
+  late CredentialObject _creds;
 
   started() async {
     debugPrint('HOME CUBIT STARTED');
+    _creds = getIt<ConfigCubit>().state.credentials!;
+
     _getDetails();
     _getBatchDetails();
     await _getAttendance();
