@@ -81,7 +81,7 @@ class LoginApi {
 
   Future<Either<bool, ApiError>> changePassword({
     required String authToken,
-    required String userId,
+    required int userId,
     required String newPassword,
     required String oldPassword,
   }) async {
@@ -92,7 +92,7 @@ class LoginApi {
           'oldPassword': oldPassword,
           'newPassword': newPassword,
           'repeatNewPassword': newPassword,
-          'userId': userId,
+          'userId': userId.toString(),
         },
         options: Options(
           headers: {
