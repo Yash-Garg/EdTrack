@@ -60,6 +60,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 SizedBox(height: 30),
                 CustomTextField(
                   isReadOnly: _isLoading,
+                  inputType: TextInputType.number,
                   controller: _admissionController,
                   validator: (val) => val != null && val.isNotEmpty
                       ? null
@@ -73,6 +74,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                 SizedBox(height: 20),
                 CustomTextField(
                   isReadOnly: _isLoading,
+                  inputType: TextInputType.number,
                   controller: _mobileController,
                   validator: (val) =>
                       val != null && val.isNotEmpty && val.length == 10

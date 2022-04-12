@@ -6,6 +6,7 @@ class CustomTextField extends StatelessWidget {
   final TextEditingController controller;
   final bool obscure, isReadOnly;
   final InputDecoration decoration;
+  final TextInputType? inputType;
   final Function(String?) validator;
 
   const CustomTextField({
@@ -13,6 +14,7 @@ class CustomTextField extends StatelessWidget {
     required this.controller,
     required this.validator,
     required this.decoration,
+    this.inputType,
     this.isReadOnly = false,
     this.obscure = false,
   }) : super(key: key);
@@ -29,6 +31,7 @@ class CustomTextField extends StatelessWidget {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       validator: (val) => validator(val),
       decoration: decoration,
+      keyboardType: inputType,
     );
   }
 }

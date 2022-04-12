@@ -52,7 +52,7 @@ class BoxUtils {
     return creds;
   }
 
-  static Future deleteCredentials(BuildContext context) async {
+  static Future<void> deleteCredentials(BuildContext context) async {
     await Hive.close();
     await Hive.deleteBoxFromDisk(BoxConstants.credentials);
     await Hive.deleteFromDisk();

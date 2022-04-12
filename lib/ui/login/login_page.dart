@@ -72,6 +72,7 @@ class _LoginPageState extends State<LoginPage> {
                     validator: (val) => val != null && val.isNotEmpty
                         ? null
                         : 'Invalid username',
+                    inputType: TextInputType.number,
                     decoration: InputDecoration(
                       labelText: 'Username',
                       border: OutlineInputBorder(),
