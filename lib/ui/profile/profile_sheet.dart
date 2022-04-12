@@ -1,3 +1,4 @@
+import 'package:akgec_erp/utils/box.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user/user_model.dart';
@@ -59,28 +60,17 @@ class ProfileSheet extends StatelessWidget {
                 children: [
                   SettingCard(
                     title: 'Change password',
-                    leading: Icon(
-                      Icons.change_circle_outlined,
-                      size: 25,
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right_outlined,
-                      size: 30,
-                    ),
+                    leading: Icons.change_circle_outlined,
+                    trailing: Icons.keyboard_arrow_right_outlined,
                     onTap: () {},
                   ),
                   SizedBox(height: 5),
                   SettingCard(
                     title: 'Sign out',
-                    leading: Icon(
-                      Icons.logout_rounded,
-                      size: 25,
-                    ),
-                    trailing: Icon(
-                      Icons.keyboard_arrow_right_outlined,
-                      size: 30,
-                    ),
-                    onTap: () {},
+                    leading: Icons.logout_rounded,
+                    trailing: Icons.keyboard_arrow_right_outlined,
+                    onTap: () async =>
+                        await BoxUtils.deleteCredentials(context),
                   ),
                 ],
               ),

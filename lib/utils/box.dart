@@ -1,7 +1,13 @@
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
+import '../cubits/config/config_cubit.dart';
+import '../injectable.dart';
 import '../models/credential/credential_object.dart';
 import '../models/token/token_model.dart';
+import '../ui/common/custom_snackbar.dart';
+import '../ui/login/login_page.dart';
 import 'constants.dart';
 
 class BoxUtils {
@@ -46,9 +52,21 @@ class BoxUtils {
     return creds;
   }
 
-  static Future deleteCredentials() async {
+  static Future deleteCredentials(BuildContext context) async {
     await Hive.close();
-    await Hive.deleteBoxFromDisk(Constants.HIVE_DB);
+    await Hive.deleteBoxFromDisk(BoxConstants.credentials);
     await Hive.deleteFromDisk();
+    await getIt<ConfigCubit>().reset();
+    Navigator.pushAndRemoveUntil(
+      context,
+      CupertinoPageRoute(builder: (_) => LoginPage()),
+      (route) => false,
+    ).then(
+      (_) => showCustomSnack(
+        context: context,
+        message: 'Signed out successfully.',
+        bgColor: Colors.green,
+      ),
+    );
   }
 }

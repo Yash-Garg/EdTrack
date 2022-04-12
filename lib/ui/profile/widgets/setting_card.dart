@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../../theme_data.dart';
 
 class SettingCard extends StatelessWidget {
-  final Icon leading, trailing;
+  final IconData leading, trailing;
   final String title;
   final Function()? onTap;
 
@@ -29,8 +29,8 @@ class SettingCard extends StatelessWidget {
           child: ListTile(
             contentPadding: EdgeInsets.only(left: 8.0),
             minLeadingWidth: 0,
-            leading: leading,
-            trailing: trailing,
+            leading: Icon(leading, size: 25),
+            trailing: Icon(trailing, size: 30),
             title: Text(
               title,
               style: AppTheme.bodyMedium.copyWith(fontSize: 16),
