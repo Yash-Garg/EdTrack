@@ -42,7 +42,7 @@ android {
     }
 
     defaultConfig {
-        applicationId "dev.yashgarg.erpakgec"
+        applicationId "dev.yashgarg.edtrack"
         minSdkVersion flutter.minSdkVersion
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()

@@ -1,4 +1,4 @@
-package dev.yashgarg.erpakgec
+package dev.yashgarg.edtrack
 
 import io.flutter.embedding.android.FlutterActivity
 
