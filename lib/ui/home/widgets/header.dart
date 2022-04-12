@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../api/endpoints.dart';
 import '../../../models/user/user_model.dart';
+import 'profile_sheet.dart';
 
 class Header extends StatelessWidget {
   final User user;
@@ -34,8 +35,20 @@ class Header extends StatelessWidget {
             ),
           ),
           InkWell(
-            onTap: () => _showProfileSheet(context),
-            child: ClipOval(
+            onTap: () => showModalBottomSheet(
+              context: context,
+              useRootNavigator: true,
+              isScrollControlled: true,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(50),
+                  topRight: Radius.circular(50),
+                ),
+              ),
+              builder: (_) => ProfileSheet(user: user),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(10000),
               child: CachedNetworkImage(
                 imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
                 fit: BoxFit.cover,
@@ -46,19 +59,6 @@ class Header extends StatelessWidget {
           )
         ],
       ),
-    );
-  }
-
-  void _showProfileSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      builder: (context) {
-        return DraggableScrollableSheet(
-          builder: ((context, scrollController) {
-            return Column();
-          }),
-        );
-      },
     );
   }
 }
