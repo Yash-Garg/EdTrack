@@ -35,7 +35,7 @@ class UserColumn extends StatelessWidget {
             ],
           ),
         ),
-        SizedBox(height: 15),
+        SizedBox(height: 20),
         Text(
           '${user.firstName} ${user.lastName}',
           style: AppTheme.bodyMedium.copyWith(
@@ -47,11 +47,11 @@ class UserColumn extends StatelessWidget {
         SizedBox(height: 3.0),
         Text(
           user.email,
-          style: AppTheme.bodyMedium,
+          style: AppTheme.bodyMedium.copyWith(fontSize: 15),
         ),
         Text(
           'UID - ${user.loginName}',
-          style: AppTheme.bodyMedium,
+          style: AppTheme.bodyMedium.copyWith(fontSize: 15),
         ),
       ],
     );

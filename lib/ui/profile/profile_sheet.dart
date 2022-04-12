@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/user/user_model.dart';
+import 'widgets/setting_card.dart';
 import 'widgets/user_column.dart';
 
 class ProfileSheet extends StatelessWidget {
@@ -43,15 +44,47 @@ class ProfileSheet extends StatelessWidget {
               ),
             ),
             UserColumn(user: user),
+            // Padding(
+            //   padding: const EdgeInsets.symmetric(vertical: 30.0),
+            //   child: Divider(
+            //     thickness: 1,
+            //     height: 10,
+            //     indent: 30,
+            //     endIndent: 30,
+            //   ),
+            // ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 20.0),
-              child: Divider(
-                thickness: 1,
-                height: 10,
-                indent: 30,
-                endIndent: 30,
+              padding: const EdgeInsets.all(25.0),
+              child: Column(
+                children: [
+                  SettingCard(
+                    title: 'Change password',
+                    leading: Icon(
+                      Icons.change_circle_outlined,
+                      size: 25,
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right_outlined,
+                      size: 30,
+                    ),
+                    onTap: () {},
+                  ),
+                  SizedBox(height: 5),
+                  SettingCard(
+                    title: 'Sign out',
+                    leading: Icon(
+                      Icons.logout_rounded,
+                      size: 25,
+                    ),
+                    trailing: Icon(
+                      Icons.keyboard_arrow_right_outlined,
+                      size: 30,
+                    ),
+                    onTap: () {},
+                  ),
+                ],
               ),
-            ),
+            )
           ],
         );
       }),
