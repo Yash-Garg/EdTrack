@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user/user_model.dart';
+import '../../theme_data.dart';
 import '../../utils/box.dart';
 import '../password/change_password.dart';
 import 'widgets/setting_card.dart';
@@ -66,8 +67,7 @@ class ProfileSheet extends StatelessWidget {
                     title: 'Sign out',
                     leading: Icons.logout_rounded,
                     trailing: Icons.keyboard_arrow_right_outlined,
-                    onTap: () async =>
-                        await BoxUtils.deleteCredentials(context),
+                    onTap: () => _confirm(context),
                   ),
                 ],
               ),
@@ -75,6 +75,47 @@ class ProfileSheet extends StatelessWidget {
           ],
         );
       }),
+    );
+  }
+
+  _confirm(BuildContext context) async {
+    Navigator.pop(context);
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          contentPadding: EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
+          content: Text(
+            'Are you sure you want to sign out?',
+            style: AppTheme.bodyMedium.copyWith(
+              fontSize: 18,
+              color: Colors.red,
+            ),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () => Navigator.pop(context),
+              child: Text(
+                'Cancel',
+                style: AppTheme.bodyMedium.copyWith(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            TextButton(
+              onPressed: () async => await BoxUtils.deleteCredentials(context),
+              child: Text(
+                'Confirm',
+                style: AppTheme.bodyMedium.copyWith(
+                  fontSize: 15,
+                  color: Colors.black,
+                ),
+              ),
+            )
+          ],
+        );
+      },
     );
   }
 }
