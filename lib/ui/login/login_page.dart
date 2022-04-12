@@ -7,7 +7,7 @@ import '../../injectable.dart';
 import '../../theme_data.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
-import '../reset/reset_password.dart';
+import '../password/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);

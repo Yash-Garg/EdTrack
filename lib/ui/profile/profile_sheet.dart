@@ -1,7 +1,9 @@
-import 'package:akgec_erp/utils/box.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../models/user/user_model.dart';
+import '../../utils/box.dart';
+import '../password/change_password.dart';
 import 'widgets/setting_card.dart';
 import 'widgets/user_column.dart';
 
@@ -45,15 +47,6 @@ class ProfileSheet extends StatelessWidget {
               ),
             ),
             UserColumn(user: user),
-            // Padding(
-            //   padding: const EdgeInsets.symmetric(vertical: 30.0),
-            //   child: Divider(
-            //     thickness: 1,
-            //     height: 10,
-            //     indent: 30,
-            //     endIndent: 30,
-            //   ),
-            // ),
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
@@ -62,9 +55,13 @@ class ProfileSheet extends StatelessWidget {
                     title: 'Change password',
                     leading: Icons.change_circle_outlined,
                     trailing: Icons.keyboard_arrow_right_outlined,
-                    onTap: () {},
+                    onTap: () => Navigator.of(context)
+                      ..pop()
+                      ..push(
+                        CupertinoPageRoute(builder: (_) => ChangePassword()),
+                      ),
                   ),
-                  SizedBox(height: 5),
+                  SizedBox(height: 10),
                   SettingCard(
                     title: 'Sign out',
                     leading: Icons.logout_rounded,
