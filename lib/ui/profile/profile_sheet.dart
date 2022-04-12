@@ -17,8 +17,8 @@ class ProfileSheet extends StatelessWidget {
   Widget build(BuildContext context) {
     return DraggableScrollableSheet(
       expand: false,
-      initialChildSize: .7,
-      maxChildSize: .7,
+      initialChildSize: .8,
+      maxChildSize: .9,
       builder: ((context, controller) {
         return ListView(
           physics: BouncingScrollPhysics(),
@@ -68,6 +68,13 @@ class ProfileSheet extends StatelessWidget {
                     leading: Icons.logout_rounded,
                     trailing: Icons.keyboard_arrow_right_outlined,
                     onTap: () => _confirm(context),
+                  ),
+                  SizedBox(height: 10),
+                  SettingCard(
+                    title: 'About',
+                    leading: Icons.info_outline_rounded,
+                    trailing: Icons.keyboard_arrow_right_outlined,
+                    onTap: () {},
                   ),
                 ],
               ),
