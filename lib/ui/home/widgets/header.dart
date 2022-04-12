@@ -35,6 +35,7 @@ class Header extends StatelessWidget {
             ),
           ),
           InkWell(
+            borderRadius: BorderRadius.circular(1000),
             onTap: () => showModalBottomSheet(
               context: context,
               useRootNavigator: true,
@@ -48,7 +49,7 @@ class Header extends StatelessWidget {
               builder: (_) => ProfileSheet(user: user),
             ),
             child: ClipRRect(
-              borderRadius: BorderRadius.circular(10000),
+              borderRadius: BorderRadius.circular(1000),
               child: CachedNetworkImage(
                 imageUrl: '${Endpoints.fileBlob}/${user.profilePictureId}',
                 fit: BoxFit.cover,

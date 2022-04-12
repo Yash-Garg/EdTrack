@@ -75,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                         : 'Invalid username',
                     inputType: TextInputType.number,
                     decoration: InputDecoration(
-                      labelText: 'Username',
+                      labelText: 'Edumarshal Username',
                       border: OutlineInputBorder(),
                       prefixIcon: Icon(Icons.alternate_email),
                     ),
