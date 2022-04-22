@@ -71,19 +71,23 @@ class _HomePageState extends State<HomePage> {
                         batch: state.userBatch!,
                       ),
                       SizedBox(height: 20),
-                      Padding(
-                        padding: const EdgeInsets.only(left: 5.0, bottom: 10.0),
-                        child: Text(
-                          'All Subjects',
-                          style: AppTheme.bodyMedium.copyWith(
-                            color: Colors.black,
-                            fontSize: 22,
+                      if (state.attendance!.stdSubAtdDetails.subjects != null)
+                        Padding(
+                          padding:
+                              const EdgeInsets.only(left: 5.0, bottom: 10.0),
+                          child: Text(
+                            'All Subjects',
+                            style: AppTheme.bodyMedium.copyWith(
+                              color: Colors.black,
+                              fontSize: 22,
+                            ),
                           ),
                         ),
-                      ),
-                      SubjectsListView(
-                        subjects: state.attendance!.stdSubAtdDetails.subjects,
-                      ),
+                      if (state.attendance!.stdSubAtdDetails.subjects != null)
+                        SubjectsListView(
+                          subjects:
+                              state.attendance!.stdSubAtdDetails.subjects!,
+                        )
                     ],
                   ),
                 );

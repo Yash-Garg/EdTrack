@@ -16,7 +16,7 @@ class Attendance with _$Attendance {
 @freezed
 class StdSubAtdDetails with _$StdSubAtdDetails {
   const factory StdSubAtdDetails({
-    required List<Subject> subjects,
+    required List<Subject>? subjects,
     required double overallPercentage,
     required double overallPresent,
     required double overallLecture,

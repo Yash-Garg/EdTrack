@@ -41,7 +41,10 @@ class _AboutAppSheetState extends State<AboutAppSheet> {
         SizedBox(height: 50),
         Text(
           'App Version - v$version',
-          style: AppTheme.bodyMedium.copyWith(fontSize: 16),
+          style: AppTheme.bodyMedium.copyWith(
+            fontSize: 16,
+            color: AppTheme.mildBlack.withOpacity(.5),
+          ),
           textAlign: TextAlign.center,
         ),
         SizedBox(height: 10),

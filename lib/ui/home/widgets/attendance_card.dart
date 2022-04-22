@@ -39,7 +39,9 @@ class AttendanceCard extends StatelessWidget {
                   style: AppTheme.titleMedium,
                 ),
                 Text(
-                  '${attendance.stdSubAtdDetails.subjects.length} Subjects (incl. Labs)',
+                  attendance.stdSubAtdDetails.subjects != null
+                      ? '${attendance.stdSubAtdDetails.subjects!.length} Subjects (incl. Labs)'
+                      : 'Not uploaded yet',
                   style: AppTheme.titleMedium.copyWith(
                     fontSize: 15,
                     fontWeight: FontWeight.normal,
@@ -52,7 +54,7 @@ class AttendanceCard extends StatelessWidget {
               alignment: Alignment.bottomRight,
               child: Text(
                 attendance.stdSubAtdDetails.overallPercentage
-                        .toStringAsFixed(2) +
+                        .toStringAsFixed(1) +
                     '%',
                 style: AppTheme.titleMedium.copyWith(
                   fontSize: 30,

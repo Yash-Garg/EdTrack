@@ -1,9 +1,9 @@
 name: edtrack
-description: A new Flutter project.
+description: Edumarshal client for AKGEC
 
 publish_to: "none"
 
-version: 1.0.0+1
+version: 1.0.1+2
 
 environment:
   sdk: ">=2.16.2 <3.0.0"
