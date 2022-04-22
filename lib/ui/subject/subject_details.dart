@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../models/user/user_attendance.dart';
+import '../../theme_data.dart';
 
 class SubjectAttendance extends StatefulWidget {
   final List<Lecture> mainLectures, extraLectures;
@@ -31,7 +32,8 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
       )
       ..addAll(
         widget.extraLectures.where((sub) => sub.subjectId == widget.subjectId),
-      );
+      )
+      ..sort((a, b) => a.absentDate.compareTo(b.absentDate));
     super.initState();
   }
 
@@ -39,7 +41,15 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(widget.subjectName),
+        title: Text(
+          widget.subjectName,
+          style: AppTheme.titleMedium.copyWith(
+            color: Colors.black,
+            fontSize: 16,
+            letterSpacing: 0,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
       ),
       body: ListView.builder(
         itemCount: subjectLectures.length,

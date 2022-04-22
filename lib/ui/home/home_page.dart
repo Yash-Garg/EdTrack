@@ -74,13 +74,25 @@ class _HomePageState extends State<HomePage> {
                       if (state.attendance!.stdSubAtdDetails.subjects != null)
                         Padding(
                           padding:
-                              const EdgeInsets.only(left: 5.0, bottom: 10.0),
-                          child: Text(
-                            'All Subjects',
-                            style: AppTheme.bodyMedium.copyWith(
-                              color: Colors.black,
-                              fontSize: 22,
-                            ),
+                              const EdgeInsets.only(left: 5.0, bottom: 15.0),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                'All Subjects',
+                                style: AppTheme.bodyMedium.copyWith(
+                                  color: Colors.black,
+                                  fontSize: 22,
+                                ),
+                              ),
+                              Text(
+                                'Click on the subject to know more.',
+                                style: AppTheme.bodyMedium.copyWith(
+                                  color: AppTheme.mildBlack.withOpacity(.5),
+                                  fontSize: 14,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       if (state.attendance!.stdSubAtdDetails.subjects != null)
