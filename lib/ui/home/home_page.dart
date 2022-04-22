@@ -32,23 +32,23 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       body: SafeArea(
         bottom: false,
-        child: RefreshIndicator(
-          onRefresh: () async => await _homeCubit.refresh(),
-          color: AppTheme.accentBlue,
-          child: BlocBuilder<HomeCubit, HomeState>(
-            bloc: _homeCubit,
-            builder: (context, state) {
-              if (state.loading) {
-                return Center(
-                  child: LottieBuilder.asset(
-                    Assets.loadingAnim,
-                    frameRate: FrameRate.max,
-                    width: MediaQuery.of(context).size.width / 1.5,
-                  ),
-                );
-              }
-              if (state.user != null) {
-                return Scrollbar(
+        child: BlocBuilder<HomeCubit, HomeState>(
+          bloc: _homeCubit,
+          builder: (context, state) {
+            if (state.loading) {
+              return Center(
+                child: LottieBuilder.asset(
+                  Assets.loadingAnim,
+                  frameRate: FrameRate.max,
+                  width: MediaQuery.of(context).size.width / 1.5,
+                ),
+              );
+            }
+            if (state.user != null && !state.loading) {
+              return RefreshIndicator(
+                onRefresh: () async => await _homeCubit.refresh(),
+                color: AppTheme.accentBlue,
+                child: Scrollbar(
                   child: ListView(
                     physics: BouncingScrollPhysics(),
                     padding: const EdgeInsets.all(20.0),
@@ -84,31 +84,29 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       if (state.attendance!.stdSubAtdDetails.subjects != null)
-                        SubjectsListView(
-                          subjects:
-                              state.attendance!.stdSubAtdDetails.subjects!,
-                        )
+                        SubjectsListView(attendance: state.attendance!)
                     ],
                   ),
-                );
-              }
-              return Center(
-                child: ListView(
-                  physics: AlwaysScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  children: [
-                    LottieBuilder.asset(Assets.errorAnim),
-                    Text(
-                      'Pull down to refresh',
-                      textAlign: TextAlign.center,
-                      style: AppTheme.bodyMedium.copyWith(fontSize: 20),
-                    ),
-                    Container(height: 200),
-                  ],
                 ),
               );
-            },
-          ),
+            }
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                LottieBuilder.asset(Assets.errorAnim),
+                TextButton(
+                  child: Text(
+                    'Reload',
+                    textAlign: TextAlign.center,
+                    style: AppTheme.bodyMedium.copyWith(fontSize: 20),
+                  ),
+                  onPressed: () => _homeCubit
+                    ..reset()
+                    ..started(),
+                ),
+              ],
+            );
+          },
         ),
       ),
     );

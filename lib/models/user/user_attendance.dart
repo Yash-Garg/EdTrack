@@ -7,6 +7,8 @@ part '../../generated/models/user/user_attendance.g.dart';
 class Attendance with _$Attendance {
   const factory Attendance({
     required StdSubAtdDetails stdSubAtdDetails,
+    required List<Lecture> attendanceData,
+    required List<Lecture> extraLectures,
   }) = _Attendance;
 
   factory Attendance.fromJson(Map<String, dynamic> json) =>
@@ -59,4 +61,18 @@ class Subject with _$Subject {
 
   factory Subject.fromJson(Map<String, dynamic> json) =>
       _$SubjectFromJson(json);
+}
+
+@freezed
+class Lecture with _$Lecture {
+  const factory Lecture({
+    required int? attendeeUserId,
+    @JsonKey(name: 'attandanceType') required int attendanceType,
+    required DateTime absentDate,
+    required int subjectId,
+    @JsonKey(name: 'attendanceLable') String? attendanceLabel,
+  }) = _Lecture;
+
+  factory Lecture.fromJson(Map<String, dynamic> json) =>
+      _$LectureFromJson(json);
 }

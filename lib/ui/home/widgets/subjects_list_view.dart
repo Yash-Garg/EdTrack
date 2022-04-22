@@ -1,23 +1,25 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../../../models/user/user_attendance.dart';
 import '../../../theme_data.dart';
+import '../../subject/subject_details.dart';
 
 class SubjectsListView extends StatelessWidget {
-  final List<Subject> subjects;
+  final Attendance attendance;
   const SubjectsListView({
     Key? key,
-    required this.subjects,
+    required this.attendance,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
-      itemCount: subjects.length,
+      itemCount: attendance.stdSubAtdDetails.subjects!.length,
       shrinkWrap: true,
       itemBuilder: (context, index) {
-        final subject = subjects[index];
+        final subject = attendance.stdSubAtdDetails.subjects![index];
 
         return Padding(
           padding: const EdgeInsets.only(bottom: 10.0),
@@ -25,34 +27,48 @@ class SubjectsListView extends StatelessWidget {
             elevation: .0,
             color: AppTheme.mildBlack.withOpacity(.05),
             shape: AppTheme.cardShape,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListTile(
-                horizontalTitleGap: 20,
-                title: Text(
-                  subject.name,
-                  style: AppTheme.bodyMedium.copyWith(fontSize: 16),
-                ),
-                subtitle: Padding(
-                  padding: const EdgeInsets.only(top: 5.0),
-                  child: Text(
-                    'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
-                    style: AppTheme.bodyMedium.copyWith(
-                      color: Colors.black45,
-                    ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(AppTheme.cardRadius),
+              onTap: () => Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (_) => SubjectAttendance(
+                    mainLectures: attendance.attendanceData,
+                    extraLectures: attendance.extraLectures,
+                    subjectId: subject.id,
                   ),
                 ),
-                trailing: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      value: (subject.percentageAttendance / 100),
-                      backgroundColor: AppTheme.mildBlack.withOpacity(.1),
-                      valueColor: AlwaysStoppedAnimation(
-                        AppTheme.getColor(subject.percentageAttendance),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: ListTile(
+                  shape: AppTheme.cardShape,
+                  horizontalTitleGap: 20,
+                  title: Text(
+                    subject.name,
+                    style: AppTheme.bodyMedium.copyWith(fontSize: 16),
+                  ),
+                  subtitle: Padding(
+                    padding: const EdgeInsets.only(top: 5.0),
+                    child: Text(
+                      'Attendance - ${subject.presentLectures} / ${subject.totalLectures}',
+                      style: AppTheme.bodyMedium.copyWith(
+                        color: Colors.black45,
                       ),
                     ),
-                  ],
+                  ),
+                  trailing: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      CircularProgressIndicator(
+                        value: (subject.percentageAttendance / 100),
+                        backgroundColor: AppTheme.mildBlack.withOpacity(.1),
+                        valueColor: AlwaysStoppedAnimation(
+                          AppTheme.getColor(subject.percentageAttendance),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),
