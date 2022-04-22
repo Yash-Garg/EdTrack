@@ -69,6 +69,7 @@ class Lecture with _$Lecture {
     required int? attendeeUserId,
     @JsonKey(name: 'attandanceType') required int attendanceType,
     required DateTime absentDate,
+    required bool isAbsent,
     required int subjectId,
     @JsonKey(name: 'attendanceLable') String? attendanceLabel,
   }) = _Lecture;

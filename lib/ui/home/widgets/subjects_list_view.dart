@@ -36,6 +36,7 @@ class SubjectsListView extends StatelessWidget {
                     mainLectures: attendance.attendanceData,
                     extraLectures: attendance.extraLectures,
                     subjectId: subject.id,
+                    subjectName: subject.name,
                   ),
                 ),
               ),
