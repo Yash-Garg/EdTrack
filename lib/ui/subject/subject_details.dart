@@ -65,30 +65,17 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: SubjectInfoCard(attendance: widget, state: state),
-              // Card(
-              //   color: AppTheme.mildBlack.withOpacity(.05),
-              //   shape: AppTheme.cardShape,
-              //   elevation: .0,
-              //   child: Padding(
-              //     padding: const EdgeInsets.all(8.0),
-              //     child: ListTile(
-              //       title: Text(
-              //         widget.subject.name +
-              //             widget.subject.percentageAttendance
-              //                 .toStringAsFixed(1),
-              //       ),
-              //     ),
-              //   ),
-              // ),
-              //   Text(
-              //     'You have ${absent!.length} absent & ${present!.length} present entries on ${DateFormat('MMMM d, yyyy').format(state.selectedDate)}.',
-              //     style: AppTheme.bodyMedium.copyWith(fontSize: 20),
-              //   ),
             ),
           );
         }
         return Center(
-          child: Text('No Data Found'),
+          child: Text(
+            'No Data Found',
+            style: AppTheme.titleMedium.copyWith(
+              color: Colors.black,
+              fontSize: 20,
+            ),
+          ),
         );
       },
     );

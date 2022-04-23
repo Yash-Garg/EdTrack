@@ -1,3 +1,4 @@
+import 'package:edtrack/ui/common/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -43,24 +44,34 @@ class SubjectInfoCard extends StatelessWidget {
       child: ListView(
         children: [
           ListTile(
-            contentPadding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, .0),
-            title: Text(
-              attendance.subject.name,
-              style: AppTheme.bodyMedium.copyWith(
-                fontSize: 20,
-                color: Colors.black,
+              contentPadding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, .0),
+              title: Text(
+                attendance.subject.name,
+                style: AppTheme.bodyMedium.copyWith(
+                  fontSize: 20,
+                  color: Colors.black,
+                ),
               ),
-            ),
-            subtitle: subCode != null
-                ? Text(
-                    'Subject Code ($subCode)',
-                    style: AppTheme.bodySmall.copyWith(
-                      fontSize: 16,
-                      color: AppTheme.mildBlack,
-                    ),
-                  )
-                : null,
-          ),
+              subtitle: subCode != null
+                  ? Text(
+                      'Subject Code ($subCode)',
+                      style: AppTheme.bodySmall.copyWith(
+                        fontSize: 16,
+                        color: AppTheme.mildBlack,
+                      ),
+                    )
+                  : null,
+              trailing: IconButton(
+                onPressed: () => showCustomSnack(
+                  context: context,
+                  bgColor: AppTheme.mildBlack,
+                  message: 'Tap on the month to change dates.',
+                ),
+                icon: Icon(
+                  Icons.info_outline_rounded,
+                  size: 30,
+                ),
+              )),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: ListView(
