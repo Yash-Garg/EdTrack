@@ -1,4 +1,3 @@
-import 'package:edtrack/ui/common/custom_snackbar.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
@@ -8,6 +7,7 @@ import '../../../injectable.dart';
 import '../../../theme_data.dart';
 import '../../../utils/enums.dart';
 import '../../common/custom_card_tile.dart';
+import '../../common/custom_snackbar.dart';
 import '../subject_details.dart';
 
 class SubjectInfoCard extends StatelessWidget {
@@ -37,78 +37,83 @@ class SubjectInfoCard extends StatelessWidget {
         state.classEvents?.where((e) => e == AttendanceType.Absent).toList() ??
             [];
 
-    return Card(
-      shape: AppTheme.cardShape,
-      elevation: 0,
-      color: AppTheme.mildBlack.withOpacity(.03),
-      child: ListView(
-        children: [
-          ListTile(
-              contentPadding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, .0),
-              title: Text(
-                attendance.subject.name,
-                style: AppTheme.bodyMedium.copyWith(
-                  fontSize: 20,
-                  color: Colors.black,
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20.0),
+      child: Card(
+        shape: AppTheme.cardShape,
+        elevation: 0,
+        color: AppTheme.mildBlack.withOpacity(.03),
+        child: ListView(
+          physics: BouncingScrollPhysics(),
+          children: [
+            ListTile(
+                contentPadding: const EdgeInsets.fromLTRB(16.0, 16.0, 16.0, .0),
+                title: Text(
+                  attendance.subject.name,
+                  style: AppTheme.bodyMedium.copyWith(
+                    fontSize: 18,
+                    color: Colors.black,
+                  ),
                 ),
+                subtitle: subCode != null
+                    ? Text(
+                        'Subject Code ($subCode)',
+                        style: AppTheme.bodySmall.copyWith(
+                          fontSize: 14,
+                          color: AppTheme.mildBlack,
+                        ),
+                      )
+                    : null,
+                trailing: IconButton(
+                  onPressed: () => showCustomSnack(
+                    context: context,
+                    bgColor: AppTheme.mildBlack,
+                    message: 'Tap on the month to change dates.',
+                  ),
+                  icon: Icon(
+                    Icons.info_outline_rounded,
+                    size: 30,
+                  ),
+                )),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12.0),
+              child: ListView(
+                padding: EdgeInsets.only(bottom: 20.0),
+                physics: NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                children: [
+                  CustomCardTile(
+                    title: 'Status on $date',
+                    subtitle: (state.classEvents ?? []).isEmpty
+                        ? 'No lectures on this day.'
+                        : 'Absent in ${absent.length} ${absent.length == 1 ? 'lecture' : 'lectures'} & Present in ${present.length} ${present.length == 1 ? 'lecture' : 'lectures'}.',
+                    icon: Icons.star_outline_sharp,
+                    bgColor: Color.fromARGB(255, 176, 176, 249),
+                    iconColor: Colors.purple,
+                  ),
+                  const SizedBox(height: 5.0),
+                  CustomCardTile(
+                    title: 'Total Present',
+                    subtitle:
+                        '${attendance.subject.presentLectures.toInt()} Lectures',
+                    icon: Icons.check_circle_outline_rounded,
+                    bgColor: Color.fromARGB(255, 176, 217, 249),
+                    iconColor: Colors.blue,
+                  ),
+                  const SizedBox(height: 5.0),
+                  CustomCardTile(
+                    title: 'Total Absent',
+                    subtitle:
+                        '${attendance.subject.absentLectures.toInt()} Lectures',
+                    icon: Icons.close_sharp,
+                    bgColor: Color.fromARGB(255, 255, 195, 195),
+                    iconColor: Colors.red,
+                  ),
+                ],
               ),
-              subtitle: subCode != null
-                  ? Text(
-                      'Subject Code ($subCode)',
-                      style: AppTheme.bodySmall.copyWith(
-                        fontSize: 16,
-                        color: AppTheme.mildBlack,
-                      ),
-                    )
-                  : null,
-              trailing: IconButton(
-                onPressed: () => showCustomSnack(
-                  context: context,
-                  bgColor: AppTheme.mildBlack,
-                  message: 'Tap on the month to change dates.',
-                ),
-                icon: Icon(
-                  Icons.info_outline_rounded,
-                  size: 30,
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 12.0),
-            child: ListView(
-              physics: NeverScrollableScrollPhysics(),
-              shrinkWrap: true,
-              children: [
-                CustomCardTile(
-                  title: 'Status on $date',
-                  subtitle: (state.classEvents ?? []).isEmpty
-                      ? 'No lectures on this day.'
-                      : 'Absent in ${absent.length} ${absent.length == 1 ? 'lecture' : 'lectures'} & Present in ${present.length} ${present.length == 1 ? 'lecture' : 'lectures'}.',
-                  icon: Icons.star_outline_sharp,
-                  bgColor: Color.fromARGB(255, 176, 176, 249),
-                  iconColor: Colors.purple,
-                ),
-                const SizedBox(height: 5.0),
-                CustomCardTile(
-                  title: 'Total Present',
-                  subtitle:
-                      '${attendance.subject.presentLectures.toInt()} Lectures',
-                  icon: Icons.check_circle_outline_rounded,
-                  bgColor: Color.fromARGB(255, 176, 217, 249),
-                  iconColor: Colors.blue,
-                ),
-                const SizedBox(height: 5.0),
-                CustomCardTile(
-                  title: 'Total Absent',
-                  subtitle:
-                      '${attendance.subject.absentLectures.toInt()} Lectures',
-                  icon: Icons.close_sharp,
-                  bgColor: Color.fromARGB(255, 255, 195, 195),
-                  iconColor: Colors.red,
-                ),
-              ],
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

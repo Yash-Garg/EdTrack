@@ -48,13 +48,13 @@ class CustomCardTile extends StatelessWidget {
               title: Text(
                 title,
                 style: AppTheme.titleMedium.copyWith(
-                  fontSize: 17,
+                  fontSize: 16,
                   color: Colors.black,
                 ),
               ),
               subtitle: Text(
                 subtitle,
-                style: AppTheme.bodyMedium.copyWith(fontSize: 15),
+                style: AppTheme.bodyMedium.copyWith(fontSize: 14),
               ),
             ),
           ],
