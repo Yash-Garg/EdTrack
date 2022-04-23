@@ -3,11 +3,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubits/attendance/attendance_cubit.dart';
-import '../../cubits/home/home_cubit.dart';
 import '../../injectable.dart';
 import '../../models/user/user_attendance.dart';
 import '../../theme_data.dart';
 import '../../utils/enums.dart';
+import 'widgets/subject_info_card.dart';
 
 class SubjectAttendance extends StatefulWidget {
   final List<Lecture> mainLectures, extraLectures;
@@ -53,12 +53,6 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
         }
 
         if (!state.loading) {
-          final subCode = getIt<HomeCubit>()
-              .state
-              .subDetails!
-              .firstWhere((s) => s.id == widget.subject.id)
-              .code;
-
           final present = state.classEvents
               ?.where((e) => e == AttendanceType.Present)
               .toList();
@@ -78,35 +72,7 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: Card(
-                shape: AppTheme.cardShape,
-                elevation: 0,
-                color: AppTheme.mildBlack.withOpacity(.03),
-                child: Column(
-                  children: [
-                    ListTile(
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 16.0,
-                        vertical: 12.0,
-                      ),
-                      title: Text(
-                        widget.subject.name,
-                        style: AppTheme.bodyMedium.copyWith(
-                          fontSize: 20,
-                          color: Colors.black,
-                        ),
-                      ),
-                      subtitle: Text(
-                        'Subject Code ($subCode)',
-                        style: AppTheme.bodySmall.copyWith(
-                          fontSize: 16,
-                          color: AppTheme.mildBlack,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
+              child: SubjectInfoCard(attendance: widget),
               // Card(
               //   color: AppTheme.mildBlack.withOpacity(.05),
               //   shape: AppTheme.cardShape,
