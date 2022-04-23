@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 
 import '../models/error/api_error.dart';
+import '../models/subject/subject_info_model.dart';
 import '../models/user/user_attendance.dart';
 import '../models/user/user_batch.dart';
 import '../models/user/user_model.dart';
@@ -97,6 +98,39 @@ class DataApi {
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to fetch batch details'));
+    }
+  }
+
+  Future<Either<List<SubjectDetails>, ApiError>> getSubjectDetails({
+    required String authToken,
+    required int batchId,
+  }) async {
+    try {
+      final response = await dio.get(
+        '${Endpoints.subjectDetails}/$batchId',
+        options: Options(
+          responseType: ResponseType.json,
+          headers: {
+            'Authorization': 'Bearer $authToken',
+          },
+        ),
+      );
+
+      final mainSubjectDetails = List<SubjectDetails>.from(
+        response.data[0]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
+      );
+
+      final electiveSubjectDetails = List<SubjectDetails>.from(
+        response.data[1]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
+      );
+
+      final subjectDetails = [...mainSubjectDetails, ...electiveSubjectDetails];
+
+      debugPrint(subjectDetails.first.name);
+      return left(subjectDetails);
+    } catch (e, trace) {
+      debugPrint('ERROR - $e\nTRACE - $trace');
+      return right(ApiError(message: 'Failed to fetch subject details.'));
     }
   }
 }

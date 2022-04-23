@@ -8,6 +8,7 @@ class HomeState with _$HomeState {
     User? user,
     Attendance? attendance,
     UserBatch? userBatch,
+    List<SubjectDetails>? subDetails,
   }) = _HomeState;
 
   factory HomeState.initial() => _HomeState(
@@ -16,5 +17,6 @@ class HomeState with _$HomeState {
         user: null,
         attendance: null,
         userBatch: null,
+        subDetails: null,
       );
 }

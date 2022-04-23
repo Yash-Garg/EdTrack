@@ -6,6 +6,7 @@ import 'package:injectable/injectable.dart';
 import '../../api/data_api.dart';
 import '../../injectable.dart';
 import '../../models/credential/credential_object.dart';
+import '../../models/subject/subject_info_model.dart';
 import '../../models/user/user_attendance.dart';
 import '../../models/user/user_batch.dart';
 import '../../models/user/user_model.dart';
@@ -46,6 +47,8 @@ class HomeCubit extends Cubit<HomeState> {
       (user) => emit(state.copyWith(user: user)),
       (err) => emit(state.copyWith(hasError: true, loading: false)),
     );
+
+    _getSubDetails();
   }
 
   _getAttendance() async {
@@ -73,6 +76,18 @@ class HomeCubit extends Cubit<HomeState> {
     batchResponse.fold(
       (batch) => emit(state.copyWith(userBatch: batch)),
       (err) => emit(state.copyWith(hasError: true, loading: false)),
+    );
+  }
+
+  _getSubDetails() async {
+    final subjectResponse = await getIt<DataApi>().getSubjectDetails(
+      authToken: _creds.accessToken!,
+      batchId: state.user!.batchId,
+    );
+
+    subjectResponse.fold(
+      (details) => emit(state.copyWith(subDetails: details)),
+      (r) => emit(state.copyWith(hasError: true, loading: false)),
     );
   }
 

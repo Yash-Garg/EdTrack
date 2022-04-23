@@ -22,7 +22,8 @@ class AttendanceCubit extends Cubit<AttendanceState> {
     required List<Lecture> extraLectures,
     required List<Lecture> mainLectures,
     required int subjectId,
-  }) {
+    required int batchId,
+  }) async {
     _extraLectures = extraLectures;
     _mainLectures = mainLectures;
     _subId = subjectId;
@@ -34,7 +35,6 @@ class AttendanceCubit extends Cubit<AttendanceState> {
     final formatter = DateFormat('yyyy-MM-dd');
 
     for (final lecture in state.lectures!) {
-      debugPrint('Absent - ${lecture.absentDate}');
       if (formatter.format(lecture.absentDate) == (formatter.format(date))) {
         events.add(
           lecture.isAbsent ? AttendanceType.Absent : AttendanceType.Present,

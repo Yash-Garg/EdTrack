@@ -7,6 +7,7 @@ part '../../generated/models/user/user_model.g.dart';
 class User with _$User {
   const factory User({
     required int userId,
+    required int batchId,
     required String loginName,
     required String firstName,
     required String lastName,

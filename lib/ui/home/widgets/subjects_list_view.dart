@@ -7,6 +7,7 @@ import '../../subject/subject_details.dart';
 
 class SubjectsListView extends StatelessWidget {
   final Attendance attendance;
+
   const SubjectsListView({
     Key? key,
     required this.attendance,
@@ -35,8 +36,7 @@ class SubjectsListView extends StatelessWidget {
                   builder: (_) => SubjectAttendance(
                     mainLectures: attendance.attendanceData,
                     extraLectures: attendance.extraLectures,
-                    subjectId: subject.id,
-                    subjectName: subject.name,
+                    subject: subject,
                   ),
                 ),
               ),
