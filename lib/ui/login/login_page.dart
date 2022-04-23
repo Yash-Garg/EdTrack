@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../cubits/config/config_cubit.dart';
 import '../../injectable.dart';
+import '../../keys.dart';
 import '../../theme_data.dart';
 import '../../utils/constants.dart';
 import '../common/custom_textfield.dart';
@@ -68,6 +69,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 30),
                   CustomTextField(
+                    key: WidgetKeys.loginField,
                     isReadOnly: _isLoading,
                     controller: _userController,
                     validator: (val) => val != null && val.isNotEmpty
@@ -82,6 +84,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                   SizedBox(height: 20),
                   CustomTextField(
+                    key: WidgetKeys.passwordField,
                     isReadOnly: _isLoading,
                     controller: _passController,
                     validator: (val) => val != null && val.isNotEmpty
