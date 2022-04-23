@@ -1,5 +1,9 @@
+import 'package:calendar_appbar/calendar_appbar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../cubits/attendance/attendance_cubit.dart';
+import '../../injectable.dart';
 import '../../models/user/user_attendance.dart';
 import '../../theme_data.dart';
 
@@ -21,48 +25,47 @@ class SubjectAttendance extends StatefulWidget {
 }
 
 class _SubjectAttendanceState extends State<SubjectAttendance> {
-  List<Lecture> subjectLectures = [];
+  late AttendanceCubit _attendanceCubit;
 
   @override
   void initState() {
-    debugPrint(widget.subjectId.toString());
-    subjectLectures
-      ..addAll(
-        widget.mainLectures.where((sub) => sub.subjectId == widget.subjectId),
-      )
-      ..addAll(
-        widget.extraLectures.where((sub) => sub.subjectId == widget.subjectId),
-      )
-      ..sort((a, b) => a.absentDate.compareTo(b.absentDate));
+    _attendanceCubit = getIt<AttendanceCubit>()
+      ..started(
+        mainLectures: widget.mainLectures,
+        extraLectures: widget.extraLectures,
+        subjectId: widget.subjectId,
+      );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          widget.subjectName,
-          style: AppTheme.titleMedium.copyWith(
-            color: Colors.black,
-            fontSize: 16,
-            letterSpacing: 0,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-      ),
-      body: ListView.builder(
-        itemCount: subjectLectures.length,
-        itemBuilder: (_, index) {
-          final lecture = subjectLectures[index];
-          return ListTile(
-            title: Text(
-              '${index + 1}. ' + lecture.absentDate.toLocal().toString(),
+    return BlocBuilder<AttendanceCubit, AttendanceState>(
+      bloc: _attendanceCubit,
+      builder: (context, state) {
+        if (!state.loading) {
+          return Scaffold(
+            appBar: CalendarAppBar(
+              firstDate: state.eventDates!.first,
+              lastDate: state.eventDates!.last,
+              events: state.eventDates,
+              accent: AppTheme.accentBlue,
+              onDateChanged: (DateTime date) =>
+                  _attendanceCubit.changeDate(date),
             ),
-            subtitle: Text(lecture.isAbsent ? 'A' : 'P'),
+            body: Center(
+              child: Text(
+                'You have ${state.classEvents?.length ?? 0} entries on ${state.selectedDate}.',
+                textAlign: TextAlign.center,
+                style: AppTheme.bodyMedium.copyWith(fontSize: 20),
+              ),
+            ),
           );
-        },
-      ),
+        }
+        return Center(
+          child: Text('data'),
+        );
+      },
     );
   }
 }

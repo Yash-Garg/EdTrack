@@ -16,6 +16,13 @@ class AppTheme {
     letterSpacing: 1,
   );
 
+  static TextStyle bodySmall = AppTheme.titleMedium.copyWith(
+    color: Colors.black,
+    fontSize: 16,
+    letterSpacing: 0,
+    fontWeight: FontWeight.w500,
+  );
+
   static TextStyle bodyMedium = AppTheme.titleMedium.copyWith(
     fontSize: 14,
     color: AppTheme.mildBlack,

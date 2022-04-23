@@ -58,7 +58,7 @@ class _AboutAppSheetState extends State<AboutAppSheet> {
               textAlign: TextAlign.center,
             ),
           ),
-          onTap: () => launch('https://github.com/Yash-Garg'),
+          onTap: () => launchUrl(Uri.parse('https://github.com/Yash-Garg')),
         ),
         SizedBox(height: 50),
       ],

@@ -67,11 +67,9 @@ class Subject with _$Subject {
 class Lecture with _$Lecture {
   const factory Lecture({
     required int? attendeeUserId,
-    @JsonKey(name: 'attandanceType') required int attendanceType,
     required DateTime absentDate,
     required bool isAbsent,
     required int subjectId,
-    @JsonKey(name: 'attendanceLable') String? attendanceLabel,
   }) = _Lecture;
 
   factory Lecture.fromJson(Map<String, dynamic> json) =>
