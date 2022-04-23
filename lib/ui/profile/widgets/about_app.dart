@@ -59,7 +59,7 @@ class _AboutAppSheetState extends State<AboutAppSheet> {
             ),
           ),
           onTap: () => launchUrl(
-            Uri.parse('https://github.com/Yash-Garg'),
+            Uri.parse('https://github.com/Yash-Garg/EdTrack'),
             mode: LaunchMode.externalApplication,
           ),
         ),
