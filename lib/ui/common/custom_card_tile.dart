@@ -6,6 +6,7 @@ class CustomCardTile extends StatelessWidget {
   final String title, subtitle;
   final IconData icon;
   final Color bgColor, iconColor;
+  final double? height;
 
   const CustomCardTile({
     Key? key,
@@ -14,12 +15,14 @@ class CustomCardTile extends StatelessWidget {
     required this.icon,
     required this.bgColor,
     required this.iconColor,
+    this.height,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       width: 190,
+      height: height,
       child: Card(
         shape: AppTheme.cardShape,
         elevation: .0,
@@ -41,6 +44,7 @@ class CustomCardTile extends StatelessWidget {
               ),
             ),
             ListTile(
+              minVerticalPadding: 10,
               title: Text(
                 title,
                 style: AppTheme.titleMedium.copyWith(

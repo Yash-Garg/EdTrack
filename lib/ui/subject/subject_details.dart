@@ -6,7 +6,6 @@ import '../../cubits/attendance/attendance_cubit.dart';
 import '../../injectable.dart';
 import '../../models/user/user_attendance.dart';
 import '../../theme_data.dart';
-import '../../utils/enums.dart';
 import 'widgets/subject_info_card.dart';
 
 class SubjectAttendance extends StatefulWidget {
@@ -53,13 +52,6 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
         }
 
         if (!state.loading) {
-          final present = state.classEvents
-              ?.where((e) => e == AttendanceType.Present)
-              .toList();
-          final absent = state.classEvents
-              ?.where((e) => e == AttendanceType.Absent)
-              .toList();
-
           return Scaffold(
             appBar: CalendarAppBar(
               firstDate: state.eventDates!.first,
@@ -72,7 +64,7 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: SubjectInfoCard(attendance: widget),
+              child: SubjectInfoCard(attendance: widget, state: state),
               // Card(
               //   color: AppTheme.mildBlack.withOpacity(.05),
               //   shape: AppTheme.cardShape,
