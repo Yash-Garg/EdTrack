@@ -1,33 +1,39 @@
 import 'package:edtrack/keys.dart';
 import 'package:edtrack/main.dart' as app;
+import 'package:edtrack/ui/login/login_page.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
 void main() {
-  IntegrationTestWidgetsFlutterBinding.ensureInitialized();
+  final binding = IntegrationTestWidgetsFlutterBinding.ensureInitialized()
+      as IntegrationTestWidgetsFlutterBinding;
 
-  const username = String.fromEnvironment('EDTRACK_USERNAME');
-  const password = String.fromEnvironment('EDTRACK_PASSWORD');
+  binding.framePolicy = LiveTestWidgetsFlutterBindingFramePolicy.fullyLive;
 
   group('Login Test', () {
+    const username = String.fromEnvironment('EDTRACK_USERNAME');
+    const password = String.fromEnvironment('EDTRACK_PASSWORD');
+
     testWidgets(
       'login using credentials defined in env',
-      (tester) async {
+      (WidgetTester tester) async {
         // Start the main application
-        app.main();
-        await tester.pumpAndSettle();
+        await app.main();
+        await tester.pumpAndSettle(Duration(seconds: 5));
 
-        final Finder loginField = find.byKey(WidgetKeys.loginField);
-        await tester.tap(loginField);
+        if (find.byType(LoginPage).evaluate().isNotEmpty) {
+          final Finder loginField = find.byKey(WidgetKeys.loginField);
+          await tester.tap(loginField);
 
-        await tester.enterText(loginField, username);
-        await tester.testTextInput.receiveAction(TextInputAction.done);
+          await tester.enterText(loginField, username);
+          await tester.testTextInput.receiveAction(TextInputAction.done);
 
-        final Finder passwordField = find.byKey(WidgetKeys.passwordField);
-        await tester.tap(passwordField);
+          final Finder passwordField = find.byKey(WidgetKeys.passwordField);
+          await tester.tap(passwordField);
 
-        await tester.enterText(loginField, password);
-        await tester.testTextInput.receiveAction(TextInputAction.done);
+          await tester.enterText(loginField, password);
+          await tester.testTextInput.receiveAction(TextInputAction.done);
+        }
       },
     );
   });

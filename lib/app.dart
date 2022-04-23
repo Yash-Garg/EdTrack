@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'cubits/config/config_cubit.dart';
 import 'injectable.dart';
+import 'keys.dart';
 import 'theme_data.dart';
 import 'ui/splash/splash_screen.dart';
 import 'utils/box.dart';
@@ -50,7 +51,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: Constants.APP_NAME,
-        home: SplashScreen(),
+        home: SplashScreen(key: WidgetKeys.splashScreen),
         theme: AppTheme.themeData,
       ),
     );
