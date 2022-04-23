@@ -13,3 +13,8 @@ A minimal and beautiful Android application to view attendance & other details o
   <img width="32%" src="https://github.com/Yash-Garg/EdTrack/raw/develop/images/about.png?raw=true">
   <img width="32%" src="https://github.com/Yash-Garg/EdTrack/raw/develop/images/change.png?raw=true">
 </p>
+
+<p align="center">
+  <img width="32%" src="https://github.com/Yash-Garg/EdTrack/raw/develop/images/calendar.png?raw=true">
+  <img width="32%" src="https://github.com/Yash-Garg/EdTrack/raw/develop/images/subject.png?raw=true">
+</p>
