@@ -1,0 +1,31 @@
+name: Run integration tests
+on: push
+
+jobs:
+  integration-tests:
+    name: Running tests on macOS-latest
+    if: "contains(github.event.head_commit.message, 'workflow')"
+    runs-on: macOS-latest
+    strategy:
+      fail-fast: false
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-java@v2
+        with:
+          distribution: "zulu"
+          java-version: "11"
+      - uses: subosito/flutter-action@v1
+        with:
+          channel: "stable"
+      - uses: malinskiy/action-android/install-sdk@release/0.1.2
+      - run: echo $ANDROID_HOME
+      - run: sdkmanager --install "ndk;24.0.8215888"
+      - run: flutter pub get
+      - run: flutter packages pub run build_runner build --delete-conflicting-outputs
+      - uses: malinskiy/action-android/emulator-run-cmd@release/0.1.2
+        with:
+          cmd: flutter test integration_test --dart-define=EDTRACK_USERNAME=${{ secrets.EDTRACK_USERNAME }} --dart-define=EDTRACK_PASSWORD=${{ secrets.EDTRACK_PASSWORD }}
+          api: 31
+          cmdOptions: -no-snapshot-save -noaudio -no-boot-anim -cores 2 -memory 3072 -no-window
+          tag: google_apis
+          abi: x86_64
