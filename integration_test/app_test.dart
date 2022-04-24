@@ -1,7 +1,9 @@
 import 'package:edtrack/keys.dart';
 import 'package:edtrack/main.dart' as app;
 import 'package:edtrack/ui/common/wide_fab.dart';
+import 'package:edtrack/ui/home/widgets/header.dart';
 import 'package:edtrack/ui/login/login_page.dart';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
 
@@ -39,7 +41,8 @@ void main() {
 
           final Finder loginBtn = find.byType(WideFab);
           await tester.tap(loginBtn);
-          await tester.pumpAndSettle(Duration(seconds: 5));
+          await tester.pumpAndSettle(Duration(seconds: 3));
+          expect(find.byType(Header), findsOneWidget);
         }
       },
     );

@@ -35,7 +35,7 @@ class LoginApi {
 
       final tokenData = TokenModel.fromJson(response.data);
 
-      debugPrint('ACCESS TOKEN - ${tokenData.accessToken}');
+      debugPrint('Access token issued at ${tokenData.issued}');
       return left(tokenData);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
