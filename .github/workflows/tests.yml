@@ -1,5 +1,9 @@
 name: Run integration tests
-on: push
+on:
+  push:
+      branches:
+          - develop
+  workflow_dispatch:
 
 jobs:
   integration-tests:
