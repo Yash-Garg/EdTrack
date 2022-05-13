@@ -4,7 +4,7 @@ import '../../utils/constants.dart';
 
 class AppLogo extends StatelessWidget {
   final double? size;
-  const AppLogo({Key? key, this.size}) : super(key: key);
+  const AppLogo({super.key, this.size});
 
   @override
   Widget build(BuildContext context) {

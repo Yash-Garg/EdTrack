@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 
 class HeaderCross extends StatelessWidget {
-  const HeaderCross({
-    Key? key,
-  }) : super(key: key);
+  const HeaderCross({super.key});
 
   @override
   Widget build(BuildContext context) {

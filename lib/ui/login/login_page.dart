@@ -12,7 +12,7 @@ import '../common/wide_fab.dart';
 import '../password/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
-  const LoginPage({Key? key}) : super(key: key);
+  const LoginPage({super.key});
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -150,11 +150,12 @@ class _LoginPageState extends State<LoginPage> {
   _proceed() async {
     if (formKey.currentState?.validate() ?? false) {
       FocusManager.instance.primaryFocus?.unfocus();
+
       setState(() {
         _isLoading = true;
       });
       await getIt<ConfigCubit>().setCredentials(
-        context: context,
+        navigator: Navigator.of(context),
         username: _userController.text.trim(),
         password: _passController.text.trim(),
       );

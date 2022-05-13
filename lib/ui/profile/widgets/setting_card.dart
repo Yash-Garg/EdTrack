@@ -8,12 +8,12 @@ class SettingCard extends StatelessWidget {
   final Function()? onTap;
 
   const SettingCard({
-    Key? key,
+    super.key,
     required this.leading,
     required this.trailing,
     required this.title,
     this.onTap,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

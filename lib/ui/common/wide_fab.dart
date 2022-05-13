@@ -8,11 +8,11 @@ class WideFab extends StatelessWidget {
   final bool isLoading;
 
   const WideFab({
-    Key? key,
+    super.key,
     required this.label,
     required this.onPressed,
     this.isLoading = false,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

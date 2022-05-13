@@ -7,9 +7,9 @@ import '../../common/custom_shadow_card.dart';
 class AttendanceCard extends StatelessWidget {
   final Attendance attendance;
   const AttendanceCard({
-    Key? key,
+    super.key,
     required this.attendance,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -53,9 +53,7 @@ class AttendanceCard extends StatelessWidget {
             Align(
               alignment: Alignment.bottomRight,
               child: Text(
-                attendance.stdSubAtdDetails.overallPercentage
-                        .toStringAsFixed(1) +
-                    '%',
+                '${attendance.stdSubAtdDetails.overallPercentage.toStringAsFixed(1)}%',
                 style: AppTheme.titleMedium.copyWith(
                   fontSize: 30,
                   letterSpacing: 2,

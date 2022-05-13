@@ -10,7 +10,7 @@ import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
 
 class ChangePassword extends StatefulWidget {
-  const ChangePassword({Key? key}) : super(key: key);
+  const ChangePassword({super.key});
 
   @override
   State<ChangePassword> createState() => _ChangePasswordState();

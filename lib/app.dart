@@ -12,7 +12,7 @@ import 'utils/box.dart';
 import 'utils/constants.dart';
 
 class AttendanceApp extends StatefulWidget {
-  const AttendanceApp({Key? key}) : super(key: key);
+  const AttendanceApp({super.key});
 
   @override
   State<AttendanceApp> createState() => _AttendanceAppState();
@@ -28,7 +28,7 @@ class _AttendanceAppState extends State<AttendanceApp> {
       DeviceOrientation.portraitUp,
       DeviceOrientation.portraitUp,
     ]);
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       getIt<ConfigCubit>().started();
     });
     super.initState();

@@ -7,9 +7,9 @@ import '../../../theme_data.dart';
 
 class UserColumn extends StatelessWidget {
   const UserColumn({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   final User user;
 

@@ -13,7 +13,7 @@ import 'widgets/user_column.dart';
 class ProfileSheet extends StatelessWidget {
   final User user;
 
-  const ProfileSheet({Key? key, required this.user}) : super(key: key);
+  const ProfileSheet({super.key, required this.user});
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +91,9 @@ class ProfileSheet extends StatelessWidget {
               ),
             ),
             TextButton(
-              onPressed: () async => await BoxUtils.deleteCredentials(context),
+              onPressed: () async => await BoxUtils.deleteCredentials(
+                Navigator.of(context),
+              ),
               child: Text(
                 'Confirm',
                 style: AppTheme.bodyMedium.copyWith(

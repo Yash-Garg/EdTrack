@@ -6,9 +6,7 @@ import '../../../theme_data.dart';
 import '../../common/app_logo.dart';
 
 class AboutAppSheet extends StatefulWidget {
-  const AboutAppSheet({
-    Key? key,
-  }) : super(key: key);
+  const AboutAppSheet({super.key});
 
   @override
   State<AboutAppSheet> createState() => _AboutAppSheetState();

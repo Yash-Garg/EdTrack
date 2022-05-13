@@ -12,10 +12,10 @@ import '../subject_details.dart';
 
 class SubjectInfoCard extends StatelessWidget {
   const SubjectInfoCard({
-    Key? key,
+    super.key,
     required this.attendance,
     required this.state,
-  }) : super(key: key);
+  });
 
   final SubjectAttendance attendance;
   final AttendanceState state;

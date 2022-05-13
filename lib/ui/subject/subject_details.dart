@@ -13,11 +13,11 @@ class SubjectAttendance extends StatefulWidget {
   final Subject subject;
 
   const SubjectAttendance({
-    Key? key,
+    super.key,
     required this.mainLectures,
     required this.extraLectures,
     required this.subject,
-  }) : super(key: key);
+  });
 
   @override
   State<SubjectAttendance> createState() => _SubjectAttendanceState();

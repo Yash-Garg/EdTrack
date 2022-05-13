@@ -25,7 +25,7 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
   }
 
   setCredentials({
-    required BuildContext context,
+    required NavigatorState navigator,
     required String username,
     required String password,
   }) async {
@@ -50,14 +50,13 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
               ..contextId = model.contextId,
           ));
 
-          Navigator.pushReplacement(
-            context,
+          navigator.pushReplacement(
             CupertinoPageRoute(builder: (_) => HomePage()),
           );
         }
       },
       (err) {
-        showCustomSnack(context: context, message: err.message);
+        showCustomSnack(context: navigator.context, message: err.message);
       },
     );
   }

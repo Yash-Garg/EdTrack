@@ -8,9 +8,9 @@ import '../../profile/profile_sheet.dart';
 class Header extends StatelessWidget {
   final User user;
   const Header({
-    Key? key,
+    super.key,
     required this.user,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

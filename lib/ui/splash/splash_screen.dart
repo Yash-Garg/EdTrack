@@ -11,7 +11,7 @@ import '../home/home_page.dart';
 import '../login/login_page.dart';
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+  const SplashScreen({super.key});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -20,13 +20,14 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    SchedulerBinding.instance?.addPostFrameCallback((_) {
+    SchedulerBinding.instance.addPostFrameCallback((_) {
       Future.delayed(Duration(seconds: 1)).then((_) async {
-        final isLoggedIn = await BoxUtils.checkLogin();
-        Navigator.pushReplacement(
-          context,
-          CupertinoPageRoute(
-            builder: (_) => isLoggedIn ? HomePage() : LoginPage(),
+        await BoxUtils.checkLogin().then(
+          (isLoggedIn) => Navigator.pushReplacement(
+            context,
+            CupertinoPageRoute(
+              builder: (_) => isLoggedIn ? HomePage() : LoginPage(),
+            ),
           ),
         );
       });

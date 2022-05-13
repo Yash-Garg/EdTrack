@@ -8,11 +8,11 @@ class CustomShadowCard extends StatelessWidget {
   final double width;
 
   const CustomShadowCard({
-    Key? key,
+    super.key,
     required this.child,
     required this.height,
     required this.width,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

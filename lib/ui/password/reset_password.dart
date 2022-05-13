@@ -9,7 +9,7 @@ import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
 
 class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+  const ResetPassword({super.key});
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();

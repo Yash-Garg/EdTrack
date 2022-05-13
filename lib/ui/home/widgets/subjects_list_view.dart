@@ -9,9 +9,9 @@ class SubjectsListView extends StatelessWidget {
   final Attendance attendance;
 
   const SubjectsListView({
-    Key? key,
+    super.key,
     required this.attendance,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

@@ -53,19 +53,20 @@ class BoxUtils {
     return creds;
   }
 
-  static Future<void> deleteCredentials(BuildContext context) async {
+  static Future<void> deleteCredentials(NavigatorState navigator) async {
     await Hive.close();
     await Hive.deleteBoxFromDisk(BoxConstants.credentials);
     await Hive.deleteFromDisk();
     await getIt<HomeCubit>().reset();
     await getIt<ConfigCubit>().reset();
-    Navigator.pushAndRemoveUntil(
-      context,
+
+    navigator.pushAndRemoveUntil(
       CupertinoPageRoute(builder: (_) => LoginPage()),
       (route) => false,
     );
+
     showCustomSnack(
-      context: context,
+      context: navigator.context,
       message: 'Signed out successfully.',
       bgColor: Colors.green,
     );

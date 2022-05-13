@@ -6,10 +6,10 @@ import '../../common/custom_card_tile.dart';
 
 class StatsRow extends StatelessWidget {
   const StatsRow({
-    Key? key,
+    super.key,
     required this.attendanceDetails,
     required this.batch,
-  }) : super(key: key);
+  });
 
   final StdSubAtdDetails attendanceDetails;
   final UserBatch batch;
