@@ -11,7 +11,7 @@ environment:
 dependencies:
   cached_network_image: ^3.2.0
   calendar_appbar: ^0.0.6
-  cupertino_icons: ^1.0.4
+  cupertino_icons: ^1.0.5
   dartz: ^0.10.1
   dio: ^4.0.6
   flutter:
@@ -21,7 +21,7 @@ dependencies:
   freezed_annotation: ^2.0.3
   get_it: ^7.2.0
   google_fonts: ^3.0.1
-  hive: ^2.1.0
+  hive: ^2.2.2
   hive_flutter: ^1.1.0
   hydrated_bloc: ^8.1.0
   injectable: ^1.5.3
