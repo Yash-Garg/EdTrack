@@ -54,13 +54,14 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
         if (!state.loading) {
           return Scaffold(
             appBar: CalendarAppBar(
-              firstDate: state.eventDates!.first,
-              lastDate: state.eventDates!.last,
+              firstDate: state.eventDates?.first ?? DateTime.now(),
+              lastDate: state.eventDates?.last ?? DateTime.now(),
               events: state.eventDates,
               backButton: true,
               accent: AppTheme.accentBlue,
-              onDateChanged: (DateTime date) =>
-                  _attendanceCubit.changeDate(date),
+              onDateChanged: (date) => state.eventDates == null
+                  ? null
+                  : _attendanceCubit.changeDate(date),
             ),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),

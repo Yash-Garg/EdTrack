@@ -120,14 +120,8 @@ class DataApi {
         response.data[0]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
       );
 
-      final electiveSubjectDetails = List<SubjectDetails>.from(
-        response.data[1]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
-      );
-
-      final subjectDetails = [...mainSubjectDetails, ...electiveSubjectDetails];
-
-      debugPrint(subjectDetails.first.name);
-      return left(subjectDetails);
+      debugPrint(mainSubjectDetails.first.name);
+      return left(mainSubjectDetails);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to fetch subject details.'));
