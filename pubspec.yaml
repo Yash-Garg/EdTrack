@@ -9,7 +9,7 @@ environment:
   sdk: ">=2.17.0 <3.0.0"
 
 dependencies:
-  cached_network_image: ^3.2.1
+  cached_network_image: ^3.2.2
   calendar_appbar: ^0.0.6
   cupertino_icons: ^1.0.5
   dartz: ^0.10.1
