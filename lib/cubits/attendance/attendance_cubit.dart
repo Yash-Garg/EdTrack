@@ -27,11 +27,7 @@ class AttendanceCubit extends Cubit<AttendanceState> {
     _extraLectures = extraLectures;
     _mainLectures = mainLectures;
     _subId = subjectId;
-    if (mainLectures.isNotEmpty) {
-      _calculate();
-    } else {
-      emit(state.copyWith(loading: false));
-    }
+    _calculate();
   }
 
   changeDate(DateTime date) {

@@ -1,3 +1,4 @@
+import 'package:edtrack/ui/common/custom_snackbar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -30,16 +31,21 @@ class SubjectsListView extends StatelessWidget {
             shape: AppTheme.cardShape,
             child: InkWell(
               borderRadius: BorderRadius.circular(AppTheme.cardRadius),
-              onTap: () => Navigator.push(
-                context,
-                CupertinoPageRoute(
-                  builder: (_) => SubjectAttendance(
-                    mainLectures: attendance.attendanceData,
-                    extraLectures: attendance.extraLectures,
-                    subject: subject,
-                  ),
-                ),
-              ),
+              onTap: () => subject.totalLectures > 0
+                  ? Navigator.push(
+                      context,
+                      CupertinoPageRoute(
+                        builder: (_) => SubjectAttendance(
+                          mainLectures: attendance.attendanceData,
+                          extraLectures: attendance.extraLectures,
+                          subject: subject,
+                        ),
+                      ),
+                    )
+                  : showCustomSnack(
+                      context: context,
+                      message: 'No lectures to show for this subject yet',
+                    ),
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: ListTile(
