@@ -3,7 +3,7 @@ description: Edumarshal client for AKGEC
 
 publish_to: "none"
 
-version: 1.4.1+12
+version: 1.4.2+13
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
@@ -29,6 +29,7 @@ dependencies:
   json_annotation: ^4.6.0
   lottie: ^1.4.2
   package_info_plus: ^1.4.3
+  paged_vertical_calendar: ^1.1.4
   path_provider: ^2.0.11
   url_launcher: ^6.1.5
 

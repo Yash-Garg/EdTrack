@@ -1,4 +1,6 @@
 import 'package:calendar_appbar/calendar_appbar.dart';
+import 'package:edtrack/ui/subject/widgets/paged_calendar.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -66,6 +68,19 @@ class _SubjectAttendanceState extends State<SubjectAttendance> {
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 12.0),
               child: SubjectInfoCard(attendance: widget, state: state),
+            ),
+            floatingActionButton: FloatingActionButton.extended(
+              backgroundColor: Theme.of(context).primaryColor,
+              label: Text('Summary'),
+              icon: Icon(Icons.calendar_month_outlined),
+              onPressed: () => Navigator.of(context).push(
+                CupertinoPageRoute(
+                  builder: (_) => PagedCalendarScreen(
+                    eventDates: state.eventDates,
+                    lectures: state.lectures,
+                  ),
+                ),
+              ),
             ),
           );
         }
