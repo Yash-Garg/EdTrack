@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
         children: [
           Center(child: AppLogo()),
           Positioned(
-            bottom: Platform.isIOS ? 30.0 : 15.0,
+            bottom: Platform.isIOS ? 30.0 : 20.0,
             child: Column(
               children: [
                 Text(

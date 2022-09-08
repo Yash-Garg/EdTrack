@@ -21,12 +21,16 @@ class AttendanceApp extends StatefulWidget {
 class _AttendanceAppState extends State<AttendanceApp> {
   @override
   void initState() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge);
     SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle.dark.copyWith(statusBarColor: Colors.transparent),
+      SystemUiOverlayStyle.dark.copyWith(
+        statusBarColor: Colors.transparent,
+        systemNavigationBarColor: Colors.transparent,
+      ),
     );
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
     ]);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       getIt<ConfigCubit>().started();

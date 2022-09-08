@@ -44,7 +44,7 @@ class _HomePageState extends State<HomePage> {
                 ),
               );
             }
-            if (state.user != null && !state.loading) {
+            if (!state.hasError && !state.loading) {
               return RefreshIndicator(
                 onRefresh: () async => await _homeCubit.refresh(),
                 color: AppTheme.accentBlue,

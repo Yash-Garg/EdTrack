@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
@@ -13,6 +15,7 @@ import 'endpoints.dart';
 @lazySingleton
 class DataApi {
   final Dio dio;
+  final String TAG = 'DataApi';
 
   DataApi(this.dio);
 
@@ -31,7 +34,7 @@ class DataApi {
 
       final user = User.fromJson(response.data);
 
-      debugPrint('USER - ${user.firstName}');
+      log(user.toString(), name: TAG);
       return left(user);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
@@ -61,9 +64,7 @@ class DataApi {
 
       final attendanceData = Attendance.fromJson(response.data);
 
-      debugPrint(
-        'ATTENDANCE - ${attendanceData.stdSubAtdDetails.overallPercentage}',
-      );
+      log(attendanceData.toString(), name: TAG);
       return left(attendanceData);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
@@ -93,7 +94,7 @@ class DataApi {
 
       final batchDetails = UserBatch.fromJson(response.data[0]);
 
-      debugPrint('BATCH - ${batchDetails.batchName}');
+      log(batchDetails.toString(), name: TAG);
       return left(batchDetails);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
@@ -120,7 +121,7 @@ class DataApi {
         response.data[0]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
       );
 
-      debugPrint(mainSubjectDetails.first.name);
+      log(mainSubjectDetails.toString(), name: TAG);
       return left(mainSubjectDetails);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
