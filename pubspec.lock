@@ -506,7 +506,7 @@ packages:
       name: lottie
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.4.2"
+    version: "1.4.3"
   matcher:
     dependency: transitive
     description:
