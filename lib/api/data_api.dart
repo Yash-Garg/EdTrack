@@ -121,8 +121,22 @@ class DataApi {
         response.data[0]['subject'].map((sub) => SubjectDetails.fromJson(sub)),
       );
 
-      log(mainSubjectDetails.toString(), name: TAG);
-      return left(mainSubjectDetails);
+      var electiveSubjectDetails = <SubjectDetails>[];
+
+      if (response.data[1] != null ||
+          response.data[1]['subject'] != null ||
+          response.data[1] != []) {
+        electiveSubjectDetails = List<SubjectDetails>.from(
+          response.data[1]['subject'].map(
+            (sub) => SubjectDetails.fromJson(sub),
+          ),
+        );
+      }
+
+      final subjectDetails = [...mainSubjectDetails, ...electiveSubjectDetails];
+
+      log(subjectDetails.toString(), name: TAG);
+      return left(subjectDetails);
     } catch (e, trace) {
       debugPrint('ERROR - $e\nTRACE - $trace');
       return right(ApiError(message: 'Failed to fetch subject details.'));
