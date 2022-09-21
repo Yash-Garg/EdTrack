@@ -26,7 +26,7 @@ dependencies:
   hydrated_bloc: ^8.1.0
   injectable: ^1.5.3
   intl: ^0.17.0
-  json_annotation: ^4.6.0
+  json_annotation: ^4.7.0
   lottie: ^1.4.3
   package_info_plus: ^1.4.3
   paged_vertical_calendar: ^1.1.4
