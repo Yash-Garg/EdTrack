@@ -24,7 +24,7 @@ jobs:
           channel: "stable"
       - uses: malinskiy/action-android/install-sdk@release/0.1.2
       - run: echo $ANDROID_HOME
-      - run: sdkmanager --install "ndk;24.0.8215888"
+      - run: sdkmanager --install "ndk;23.2.8568313"
       - run: sdkmanager --install "build-tools;30.0.3"
       - run: flutter pub get
       - run: flutter packages pub run build_runner build --delete-conflicting-outputs
