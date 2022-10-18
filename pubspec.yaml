@@ -44,7 +44,7 @@ dev_dependencies:
   injectable_generator: ^1.5.4
   integration_test:
     sdk: flutter
-  json_serializable: ^6.5.0
+  json_serializable: ^6.5.2
 
 flutter_icons:
   android: true
