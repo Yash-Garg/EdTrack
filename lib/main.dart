@@ -15,7 +15,9 @@ Future<void> main() async {
 
   // make workable in web also:-- by hChauhan4862
   final storage = await HydratedStorage.build(
-    storageDirectory: await getTemporaryDirectory(),
+    storageDirectory: kIsWeb
+        ? HydratedStorage.webStorageDirectory
+        : await getTemporaryDirectory(),
   );
 
   HydratedBlocOverrides.runZoned(
