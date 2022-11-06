@@ -123,9 +123,9 @@ class DataApi {
 
       var electiveSubjectDetails = <SubjectDetails>[];
 
-      if (response.data[1] != null ||
-          response.data[1]['subject'] != null ||
-          response.data[1] != []) {
+      if (
+        response.data.length >= 2 && 
+        (response.data[1] != null && response.data[1]['subject'] != null && response.data[1] != [])) {
         electiveSubjectDetails = List<SubjectDetails>.from(
           response.data[1]['subject'].map(
             (sub) => SubjectDetails.fromJson(sub),
