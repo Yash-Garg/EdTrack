@@ -3,7 +3,7 @@ description: Edumarshal client for AKGEC
 
 publish_to: "none"
 
-version: 1.4.4+15
+version: 1.4.5+16
 
 environment:
   sdk: ">=2.17.0 <3.0.0"
