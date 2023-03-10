@@ -34,7 +34,7 @@ class PagedCalendarScreen extends StatelessWidget {
               ),
               child: Text(
                 DateFormat('MMMM yyyy').format(DateTime(year, month)),
-                style: Theme.of(context).textTheme.bodyText1!.copyWith(
+                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Colors.white,
                     ),
               ),

@@ -22,12 +22,6 @@ class SubjectInfoCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final subCode = getIt<HomeCubit>()
-        .state
-        .subDetails
-        ?.firstWhere((s) => s.id == attendance.subject.id)
-        .code;
-
     final date = DateFormat('MMMM dd, yyyy').format(state.selectedDate);
 
     final present =
@@ -55,15 +49,13 @@ class SubjectInfoCard extends StatelessWidget {
                     color: Colors.black,
                   ),
                 ),
-                subtitle: subCode != null
-                    ? Text(
-                        'Subject Code ($subCode)',
-                        style: AppTheme.bodySmall.copyWith(
-                          fontSize: 14,
-                          color: AppTheme.mildBlack,
-                        ),
-                      )
-                    : null,
+                subtitle: Text(
+                  'Subject ID (${attendance.subject.id})',
+                  style: AppTheme.bodySmall.copyWith(
+                    fontSize: 14,
+                    color: AppTheme.mildBlack,
+                  ),
+                ),
                 trailing: IconButton(
                   onPressed: () => showCustomSnack(
                     context: context,

@@ -33,7 +33,6 @@ apply from: "$flutterRoot/packages/flutter_tools/gradle/flutter.gradle"
 
 android {
     compileSdkVersion flutter.compileSdkVersion
-    ndkVersion "23.2.8568313"
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -41,7 +40,7 @@ android {
     }
 
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
 
     sourceSets {
@@ -55,7 +54,6 @@ android {
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true
-        ndk { debugSymbolLevel 'FULL' }
     }
 
     signingConfigs {
@@ -69,8 +67,6 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-
-            useProguard true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
