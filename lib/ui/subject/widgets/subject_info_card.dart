@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
 import '../../../cubits/attendance/attendance_cubit.dart';
-import '../../../cubits/home/home_cubit.dart';
-import '../../../injectable.dart';
 import '../../../theme_data.dart';
 import '../../../utils/enums.dart';
 import '../../common/custom_card_tile.dart';

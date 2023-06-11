@@ -9,15 +9,13 @@ import 'utils/box.dart';
 
 Future<void> main() async {
   await initializeApp();
-  final storage = await HydratedStorage.build(
+
+  Bloc.observer = SimpleBlocObserver();
+  HydratedBloc.storage = await HydratedStorage.build(
     storageDirectory: await getTemporaryDirectory(),
   );
 
-  HydratedBlocOverrides.runZoned(
-    () => runApp(AttendanceApp()),
-    storage: storage,
-    blocObserver: SimpleBlocObserver(),
-  );
+  runApp(AttendanceApp());
 }
 
 Future<void> initializeApp() async {
