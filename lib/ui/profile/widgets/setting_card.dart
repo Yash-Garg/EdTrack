@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../theme_data.dart';
+import '../../theme_data.dart';
 
 class SettingCard extends StatelessWidget {
   final IconData leading, trailing;

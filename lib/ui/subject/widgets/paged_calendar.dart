@@ -1,4 +1,4 @@
-import 'package:edtrack/models/user/user_attendance.dart';
+import 'package:edtrack/data/models/user/user_attendance.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:paged_vertical_calendar/paged_vertical_calendar.dart';

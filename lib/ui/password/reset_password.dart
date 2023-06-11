@@ -1,7 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../api/login_api.dart';
+import '../../data/api/login_api.dart';
 import '../../injectable.dart';
 import '../../utils/constants.dart';
 import '../common/custom_snackbar.dart';
@@ -10,6 +11,12 @@ import '../common/wide_fab.dart';
 
 class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
+
+  static Route<dynamic> route() {
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => const ResetPassword(),
+    );
+  }
 
   @override
   State<ResetPassword> createState() => _ResetPasswordState();

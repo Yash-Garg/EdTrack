@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../theme_data.dart';
+import '../../ui/theme_data.dart';
 
 class CustomCardTile extends StatelessWidget {
   final String title, subtitle;

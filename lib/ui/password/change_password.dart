@@ -1,8 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../api/login_api.dart';
-import '../../cubits/config/config_cubit.dart';
+import '../../data/api/login_api.dart';
+import '../../data/cubits/config/config_cubit.dart';
 import '../../injectable.dart';
 import '../../utils/constants.dart';
 import '../common/custom_snackbar.dart';
@@ -11,6 +12,12 @@ import '../common/wide_fab.dart';
 
 class ChangePassword extends StatefulWidget {
   const ChangePassword({super.key});
+
+  static Route<dynamic> route() {
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => const ChangePassword(),
+    );
+  }
 
   @override
   State<ChangePassword> createState() => _ChangePasswordState();

@@ -1,10 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lottie/lottie.dart';
 
-import '../../cubits/home/home_cubit.dart';
+import '../../data/cubits/home/home_cubit.dart';
 import '../../injectable.dart';
-import '../../theme_data.dart';
+import '../../ui/theme_data.dart';
 import '../../utils/constants.dart';
 import 'widgets/attendance_card.dart';
 import 'widgets/header.dart';
@@ -13,6 +14,12 @@ import 'widgets/subjects_list_view.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  static Route<dynamic> route() {
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => const HomePage(),
+    );
+  }
 
   @override
   State<HomePage> createState() => _HomePageState();

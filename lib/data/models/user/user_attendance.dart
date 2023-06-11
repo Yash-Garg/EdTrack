@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '../../generated/models/user/user_attendance.freezed.dart';
-part '../../generated/models/user/user_attendance.g.dart';
+part '../../../generated/data/models/user/user_attendance.freezed.dart';
+part '../../../generated/data/models/user/user_attendance.g.dart';
 
 @freezed
 class Attendance with _$Attendance {
@@ -41,11 +41,11 @@ class Subject with _$Subject {
     required bool isAdditionalSubject,
     required bool isTimeTableSubject,
     @JsonKey(name: 'totalExtraLeactureForSubject')
-        required int totalExtraLectureForSubject,
+    required int totalExtraLectureForSubject,
     @JsonKey(name: 'presentInExtraLeactureForSubject')
-        required int presentInExtraLectureForSubject,
+    required int presentInExtraLectureForSubject,
     @JsonKey(name: 'absentInExtraLeactureForSubject')
-        required int absentInExtraLectureForSubject,
+    required int absentInExtraLectureForSubject,
     @JsonKey(name: 'totalLeactures') required int totalLectures,
     @JsonKey(name: 'presentLeactures') required int presentLectures,
     required int otherAttendance,

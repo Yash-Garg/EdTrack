@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../api/endpoints.dart';
-import '../../../models/user/user_model.dart';
-import '../../../theme_data.dart';
+import '../../../data/api/endpoints.dart';
+import '../../../data/models/user/user_model.dart';
+import '../../theme_data.dart';
 
 class UserColumn extends StatelessWidget {
   const UserColumn({
@@ -47,10 +47,6 @@ class UserColumn extends StatelessWidget {
         SizedBox(height: 10),
         Text(
           'UUID - ${user.loginName}',
-          style: AppTheme.bodyMedium.copyWith(fontSize: 15),
-        ),
-        Text(
-          'Aadhaar No. - ${user.aadhaarNumber}',
           style: AppTheme.bodyMedium.copyWith(fontSize: 15),
         ),
         Text(

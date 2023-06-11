@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-import '../../../cubits/attendance/attendance_cubit.dart';
-import '../../../theme_data.dart';
+import '../../../data/cubits/attendance/attendance_cubit.dart';
+import '../../theme_data.dart';
 import '../../../utils/enums.dart';
 import '../../common/custom_card_tile.dart';
 import '../../common/custom_snackbar.dart';

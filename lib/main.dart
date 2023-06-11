@@ -4,7 +4,7 @@ import 'package:path_provider/path_provider.dart';
 
 import 'app.dart';
 import 'injectable.dart';
-import 'simple_bloc_observer.dart';
+import 'utils/simple_bloc_observer.dart';
 import 'utils/box.dart';
 
 Future<void> main() async {

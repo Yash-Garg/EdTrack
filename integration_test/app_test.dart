@@ -1,4 +1,4 @@
-import 'package:edtrack/keys.dart';
+import 'package:edtrack/utils/keys.dart';
 import 'package:edtrack/main.dart' as app;
 import 'package:edtrack/ui/common/wide_fab.dart';
 import 'package:edtrack/ui/home/widgets/header.dart';

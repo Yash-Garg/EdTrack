@@ -1,10 +1,9 @@
 import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
-import '../../theme_data.dart';
+import '../../ui/theme_data.dart';
 import '../../utils/box.dart';
 import '../common/app_logo.dart';
 import '../home/home_page.dart';
@@ -25,9 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
         await BoxUtils.checkLogin().then(
           (isLoggedIn) => Navigator.pushReplacement(
             context,
-            CupertinoPageRoute(
-              builder: (_) => isLoggedIn ? HomePage() : LoginPage(),
-            ),
+            isLoggedIn ? HomePage.route() : LoginPage.route(),
           ),
         );
       });

@@ -3,16 +3,16 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../api/data_api.dart';
-import '../../injectable.dart';
-import '../../models/credential/credential_object.dart';
-import '../../models/subject/subject_info_model.dart';
-import '../../models/user/user_attendance.dart';
-import '../../models/user/user_batch.dart';
-import '../../models/user/user_model.dart';
+import '../../../data/api/data_api.dart';
+import '../../../injectable.dart';
+import '../../../data/models/credential/credential_object.dart';
+import '../../../data/models/subject/subject_info_model.dart';
+import '../../../data/models/user/user_attendance.dart';
+import '../../../data/models/user/user_batch.dart';
+import '../../../data/models/user/user_model.dart';
 import '../config/config_cubit.dart';
 
-part '../../generated/cubits/home/home_cubit.freezed.dart';
+part '../../../generated/data/cubits/home/home_cubit.freezed.dart';
 part 'home_state.dart';
 
 @lazySingleton

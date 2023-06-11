@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/user/user_attendance.dart';
-import '../../../models/user/user_batch.dart';
+import '../../../data/models/user/user_attendance.dart';
+import '../../../data/models/user/user_batch.dart';
 import '../../common/custom_card_tile.dart';
 
 class StatsRow extends StatelessWidget {

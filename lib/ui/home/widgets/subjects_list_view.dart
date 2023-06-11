@@ -1,9 +1,8 @@
 import 'package:edtrack/ui/common/custom_snackbar.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../../models/user/user_attendance.dart';
-import '../../../theme_data.dart';
+import '../../../data/models/user/user_attendance.dart';
+import '../../theme_data.dart';
 import '../../subject/subject_details.dart';
 
 class SubjectsListView extends StatelessWidget {
@@ -34,12 +33,10 @@ class SubjectsListView extends StatelessWidget {
               onTap: () => subject.totalLectures > 0
                   ? Navigator.push(
                       context,
-                      CupertinoPageRoute(
-                        builder: (_) => SubjectAttendance(
-                          mainLectures: attendance.attendanceData,
-                          extraLectures: attendance.extraLectures,
-                          subject: subject,
-                        ),
+                      SubjectAttendance.route(
+                        mainLectures: attendance.attendanceData,
+                        extraLectures: attendance.extraLectures,
+                        subject: subject,
                       ),
                     )
                   : showCustomSnack(

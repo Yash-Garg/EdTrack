@@ -4,10 +4,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubits/attendance/attendance_cubit.dart';
+import '../../data/cubits/attendance/attendance_cubit.dart';
 import '../../injectable.dart';
-import '../../models/user/user_attendance.dart';
-import '../../theme_data.dart';
+import '../../data/models/user/user_attendance.dart';
+import '../../ui/theme_data.dart';
 import 'widgets/subject_info_card.dart';
 
 class SubjectAttendance extends StatefulWidget {
@@ -20,6 +20,20 @@ class SubjectAttendance extends StatefulWidget {
     required this.extraLectures,
     required this.subject,
   });
+
+  static Route<dynamic> route({
+    required List<Lecture> extraLectures,
+    required List<Lecture> mainLectures,
+    required Subject subject,
+  }) {
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => SubjectAttendance(
+        mainLectures: mainLectures,
+        extraLectures: extraLectures,
+        subject: subject,
+      ),
+    );
+  }
 
   @override
   State<SubjectAttendance> createState() => _SubjectAttendanceState();

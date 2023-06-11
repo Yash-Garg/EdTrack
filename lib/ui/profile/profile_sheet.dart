@@ -1,8 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/user/user_model.dart';
-import '../../theme_data.dart';
+import '../../data/models/user/user_model.dart';
+import '../../ui/theme_data.dart';
 import '../../utils/box.dart';
 import '../password/change_password.dart';
 import 'widgets/about_app.dart';
@@ -38,9 +37,7 @@ class ProfileSheet extends StatelessWidget {
                     trailing: Icons.keyboard_arrow_right_outlined,
                     onTap: () => Navigator.of(context)
                       ..pop()
-                      ..push(
-                        CupertinoPageRoute(builder: (_) => ChangePassword()),
-                      ),
+                      ..push(ChangePassword.route()),
                   ),
                   SizedBox(height: 10),
                   SettingCard(

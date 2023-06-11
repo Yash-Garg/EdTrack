@@ -3,10 +3,10 @@ import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'cubits/config/config_cubit.dart';
+import 'data/cubits/config/config_cubit.dart';
 import 'injectable.dart';
-import 'keys.dart';
-import 'theme_data.dart';
+import 'utils/keys.dart';
+import 'ui/theme_data.dart';
 import 'ui/splash/splash_screen.dart';
 import 'utils/box.dart';
 import 'utils/constants.dart';

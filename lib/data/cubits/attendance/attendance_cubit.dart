@@ -4,10 +4,10 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:injectable/injectable.dart';
 import 'package:intl/intl.dart';
 
-import '../../models/user/user_attendance.dart';
-import '../../utils/enums.dart';
+import '../../../data/models/user/user_attendance.dart';
+import '../../../utils/enums.dart';
 
-part '../../generated/cubits/attendance/attendance_cubit.freezed.dart';
+part '../../../generated/data/cubits/attendance/attendance_cubit.freezed.dart';
 part 'attendance_state.dart';
 
 @lazySingleton

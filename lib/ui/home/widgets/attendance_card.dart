@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../../models/user/user_attendance.dart';
-import '../../../theme_data.dart';
+import '../../../data/models/user/user_attendance.dart';
+import '../../theme_data.dart';
 import '../../common/custom_shadow_card.dart';
 
 class AttendanceCard extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '../../generated/models/subject/subject_info_model.freezed.dart';
-part '../../generated/models/subject/subject_info_model.g.dart';
+part '../../../generated/data/models/subject/subject_info_model.freezed.dart';
+part '../../../generated/data/models/subject/subject_info_model.g.dart';
 
 @freezed
 class SubjectDetails with _$SubjectDetails {

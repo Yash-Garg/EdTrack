@@ -4,7 +4,11 @@ part of 'config_cubit.dart';
 class ConfigState with _$ConfigState {
   const factory ConfigState({
     required bool isLoggedIn,
-    @JsonKey(includeToJson: false) CredentialObject? credentials,
+    @JsonKey(
+      includeToJson: false,
+      includeFromJson: false,
+    )
+    CredentialObject? credentials,
   }) = _ConfigState;
 
   factory ConfigState.initial() => _ConfigState(

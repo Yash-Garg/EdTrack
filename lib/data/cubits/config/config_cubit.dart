@@ -3,15 +3,15 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:hydrated_bloc/hydrated_bloc.dart';
 import 'package:injectable/injectable.dart';
 
-import '../../api/login_api.dart';
-import '../../injectable.dart';
-import '../../models/credential/credential_object.dart';
-import '../../ui/common/custom_snackbar.dart';
-import '../../ui/home/home_page.dart';
-import '../../utils/box.dart';
+import '../../../data/api/login_api.dart';
+import '../../../injectable.dart';
+import '../../../data/models/credential/credential_object.dart';
+import '../../../ui/common/custom_snackbar.dart';
+import '../../../ui/home/home_page.dart';
+import '../../../utils/box.dart';
 
-part '../../generated/cubits/config/config_cubit.freezed.dart';
-part '../../generated/cubits/config/config_cubit.g.dart';
+part '../../../generated/data/cubits/config/config_cubit.freezed.dart';
+part '../../../generated/data/cubits/config/config_cubit.g.dart';
 part 'config_state.dart';
 
 @lazySingleton
@@ -50,9 +50,7 @@ class ConfigCubit extends HydratedCubit<ConfigState> {
               ..contextId = model.contextId,
           ));
 
-          navigator.pushReplacement(
-            CupertinoPageRoute(builder: (_) => HomePage()),
-          );
+          navigator.pushReplacement(HomePage.route());
         }
       },
       (err) {

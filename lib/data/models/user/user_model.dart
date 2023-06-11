@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '../../generated/models/user/user_model.freezed.dart';
-part '../../generated/models/user/user_model.g.dart';
+part '../../../generated/data/models/user/user_model.freezed.dart';
+part '../../../generated/data/models/user/user_model.g.dart';
 
 @freezed
 class User with _$User {

@@ -2,10 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../cubits/config/config_cubit.dart';
+import '../../data/cubits/config/config_cubit.dart';
 import '../../injectable.dart';
-import '../../keys.dart';
-import '../../theme_data.dart';
+import '../../utils/keys.dart';
+import '../../ui/theme_data.dart';
 import '../../utils/constants.dart';
 import '../common/custom_textfield.dart';
 import '../common/wide_fab.dart';
@@ -13,6 +13,12 @@ import '../password/reset_password.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
+
+  static Route<dynamic> route() {
+    return CupertinoPageRoute<dynamic>(
+      builder: (_) => const LoginPage(),
+    );
+  }
 
   @override
   State<LoginPage> createState() => _LoginPageState();
@@ -113,10 +119,7 @@ class _LoginPageState extends State<LoginPage> {
                         onTap: () {
                           // Unfocus textfield before pushing route
                           FocusManager.instance.primaryFocus?.unfocus();
-                          Navigator.push(
-                            context,
-                            CupertinoPageRoute(builder: (_) => ResetPassword()),
-                          );
+                          Navigator.push(context, ResetPassword.route());
                         },
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),

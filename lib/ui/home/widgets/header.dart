@@ -1,8 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
-import '../../../api/endpoints.dart';
-import '../../../models/user/user_model.dart';
+import '../../../data/api/endpoints.dart';
+import '../../../data/models/user/user_model.dart';
 import '../../profile/profile_sheet.dart';
 
 class Header extends StatelessWidget {

@@ -1,7 +1,7 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
 
-part '../../generated/models/token/token_model.freezed.dart';
-part '../../generated/models/token/token_model.g.dart';
+part '../../../generated/data/models/token/token_model.freezed.dart';
+part '../../../generated/data/models/token/token_model.g.dart';
 
 @freezed
 class TokenModel with _$TokenModel {

@@ -1,12 +1,11 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 
-import '../cubits/config/config_cubit.dart';
-import '../cubits/home/home_cubit.dart';
+import '../data/cubits/config/config_cubit.dart';
+import '../data/cubits/home/home_cubit.dart';
 import '../injectable.dart';
-import '../models/credential/credential_object.dart';
-import '../models/token/token_model.dart';
+import '../data/models/credential/credential_object.dart';
+import '../data/models/token/token_model.dart';
 import '../ui/common/custom_snackbar.dart';
 import '../ui/login/login_page.dart';
 import 'constants.dart';
@@ -61,7 +60,7 @@ class BoxUtils {
     await getIt<ConfigCubit>().reset();
 
     navigator.pushAndRemoveUntil(
-      CupertinoPageRoute(builder: (_) => LoginPage()),
+      LoginPage.route(),
       (route) => false,
     );
 
