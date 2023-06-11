@@ -53,7 +53,14 @@ class _ChangePasswordState extends State<ChangePassword> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  LottieBuilder.asset(Assets.passwordAnim, repeat: false),
+                  SizedBox(
+                    width: double.infinity,
+                    child: LottieBuilder.asset(
+                      Assets.passwordAnim,
+                      fit: BoxFit.fill,
+                      repeat: false,
+                    ),
+                  ),
                   Text(
                     'Change\nPassword.',
                     style: TextStyle(
